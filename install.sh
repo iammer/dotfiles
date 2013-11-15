@@ -8,9 +8,17 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc bash_aliases bash_functions vimrc gitconfig tmux.conf tmux.osx.conf"    # list of files/folders to symlink in homedir
+files="bashrc bash_aliases bash_functions vimrc vim gitconfig tmux.conf"    # list of files/folders to symlink in homedir
+mac_files="tmux.osx.conf"
 
 ##########
+
+case $OSTYPE in
+	darwin* )
+		echo "Detected OSX: including $mac_files"
+		files=("${files[@]}" "${mac_files[@]}")
+		;;
+esac
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"

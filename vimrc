@@ -14,6 +14,8 @@ if v:progname =~? "evim"
   finish
 endif
 
+:runtime bundle/vim-pathogen/autoload/pathogen.vim
+
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -77,10 +79,6 @@ if has("autocmd")
 
   augroup END
 
-else
-
-  set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -96,6 +94,7 @@ call pathogen#helptags()
 
 set number
 set hidden
+set autoindent		" always set autoindenting on
 
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab shiftround
 set splitright
@@ -121,5 +120,7 @@ nnoremap <leader>h :noh<CR>
 
 nnoremap <leader>n :NERDTree<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
+
+nnoremap <leader>p :set paste!<CR>
 
 inoremap jk <esc>
