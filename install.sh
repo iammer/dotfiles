@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc bash_aliases bash_functions vimrc vim gitconfig tmux.conf"    # list of files/folders to symlink in homedir
+files="bashrc bash_aliases bash_functions vimrc vim tmux.conf"    # list of files/folders to symlink in homedir
 mac_files="tmux.osx.conf"
 
 ##########
@@ -37,6 +37,19 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+echo "Moving old .gitconfig"
+mv ~/.gitconfig ~/dotfiles_old/
+
+if [[ `git --version` == 'git version 1.7'* ]]; then
+	echo 'Git 1.7 detected'
+	echo "Creating symlink from gitconfig17 to .gitconfig"
+	ln -s $dir/gitconfig17 ~/.gitconfig
+else
+	echo 'Git >1.7 detected'
+	echo "Creating symlink from gitconfig18 to .gitconfig"
+	ln -s $dir/gitconfig18 ~/.gitconfig
+fi
 
 cd $dir
 git submodule init
