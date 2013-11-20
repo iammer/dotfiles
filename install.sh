@@ -51,6 +51,9 @@ else
 	ln -s $dir/gitconfig18 ~/.gitconfig
 fi
 
+[[ -d ~/bin ]] && mv ~/bin $olddir
+[[ -d $dir/bin ]] && ln -s $dir/bin ~/bin
+
 cd $dir
 git submodule init
 git submodule update
