@@ -124,3 +124,9 @@ fi
 if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
 fi
+
+if [[ $SHLVL < 3 ]]; then
+	PATH="$PATH:~/bin"
+
+	[[ -d ~/bin_local ]] && PATH="$PATH:~/bin_local"
+fi
