@@ -111,6 +111,9 @@ fi
 
 if [ -n "$TMUX" ]; then
 	unset GVM_INIT
+	export TERM='screen-256color'
+else 
+	export TERM='xterm-256color'
 fi
 
 export EDITOR='/usr/bin/vim'
