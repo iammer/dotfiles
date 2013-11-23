@@ -13,10 +13,16 @@ mac_files="tmux.osx.conf"
 
 ##########
 
+[[ -x ~/.tmux.local.conf ]] && mv ~/.tmux.local.conf $olddir
+
 case $OSTYPE in
 	darwin* )
-		echo "Detected OSX: including $mac_files"
-		files=("${files[@]}" "${mac_files[@]}")
+		echo "Detected OSX: copying tmux.osx.conf to tmux.local.conf"
+		cp $dir/tmux.osx.conf ~/.tmux.local.conf
+		;;
+	* )
+		echo "Creating empty tmux.local.conf"
+		touch ~/.tmux.local.conf
 		;;
 esac
 
