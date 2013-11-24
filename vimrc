@@ -100,7 +100,16 @@ set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab shiftround
 set splitright
 "set splitbelow
 
+colorscheme vividchalk
+
 let g:ctrlp_working_path_mode = 'rw'
+let g:ctrlp_custom_ignore = {
+ \ 'file': '\v\.(class|jar)$'
+ \ }
+
+let g:ctrlp_prompt_mappings = {
+ \ 'PrtClearCache()': ['<c-5>']
+ \ }
 
 " Shortcut to rapidly toggle `set list`
 nnoremap <leader>l :set list!<CR>
