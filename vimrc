@@ -108,7 +108,7 @@ let g:ctrlp_custom_ignore = {
  \ }
 
 let g:ctrlp_prompt_mappings = {
- \ 'PrtClearCache()': ['<c-5>']
+ \ 'PrtClearCache()': ['<C-5>']
  \ }
 
 " Shortcut to rapidly toggle `set list`
