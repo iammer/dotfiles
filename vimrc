@@ -127,7 +127,7 @@ nnoremap <leader>sm :so $MYVIMRC<CR>
 
 nnoremap <leader>h :noh<CR>
 
-nnoremap <leader>n :NERDTree<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
 nnoremap <leader>p :set paste!<CR>
