@@ -130,6 +130,8 @@ nnoremap <leader>h :noh<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
+nnoremap <leader>w :set wrap!<CR>
+
 nnoremap <leader>p :set paste!<CR>
 
 inoremap jk <esc>
