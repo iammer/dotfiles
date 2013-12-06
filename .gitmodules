@@ -16,3 +16,6 @@
 [submodule "vim/bundle/vim-colorschemes"]
 	path = vim/bundle/vim-colorschemes
 	url = git://github.com/flazz/vim-colorschemes
+[submodule "vim/bundle/bufexplorer"]
+	path = vim/bundle/bufexplorer
+	url = git://github.com/corntrace/bufexplorer
