@@ -102,14 +102,14 @@ set splitright
 
 colorscheme vividchalk
 
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_custom_ignore = {
  \ 'file': '\v\.(class|jar)$'
  \ }
 
-let g:ctrlp_prompt_mappings = {
- \ 'PrtClearCache()': ['<C-5>']
- \ }
+let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<F5>','<c-i>'] }
 
 " Shortcut to rapidly toggle `set list`
 nnoremap <leader>l :set list!<CR>
