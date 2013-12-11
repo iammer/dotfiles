@@ -135,3 +135,18 @@ nnoremap <leader>w :set wrap!<CR>
 nnoremap <leader>p :set paste!<CR>
 
 inoremap jk <esc>
+
+
+"-----Functions------
+function! SearchGlobalFunc(searchStr)
+	enew
+	setlocal nonumber
+	execute "read !for f in $(find . -type f -exec grep -q -I " . a:searchStr
+	\ . " \"{}\" \\; -print); do  echo \"$f :\"; grep -n -C 10 " . a:searchStr 
+	\ . " \"$f\" ; printf \"\\n\\n\"; done"
+	execute "normal! gg/" . a:searchStr . "\n"
+	let @/ = a:searchStr
+	set hlsearch
+endfunction
+
+command! -nargs=1 SearchGlobal :call SearchGlobalFunc("<args>")
