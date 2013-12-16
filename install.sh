@@ -61,5 +61,4 @@ fi
 [[ -d $dir/bin ]] && ln -s $dir/bin ~/bin
 
 cd $dir
-git submodule init
-git submodule update
+./refresh.sh

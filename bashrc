@@ -122,14 +122,16 @@ if [ -f ~/.bash_functions ]; then
 	. ~/.bash_functions
 fi
 
-[[ -s "~/.gvm/bin/gvm-init.sh" ]] && source "~/.gvm/bin/gvm-init.sh"
+[[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
 
 if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
 fi
 
-if [[ $SHLVL < 4 ]]; then
+if [[ "$PATH" != *~/bin* ]]; then
 	PATH="$PATH:~/bin"
 
 	[[ -d ~/bin_local ]] && PATH="$PATH:~/bin_local"
 fi
+
+[[ -s ~/bin/git-completion.bash ]] && source ~/bin/git-completion.bash
