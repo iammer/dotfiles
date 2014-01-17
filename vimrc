@@ -64,6 +64,9 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
+  " Make .schema use javascript highlighting
+  autocmd BufNewFile,BufRead *.schema set filetype=javascript
+  
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
 
@@ -102,11 +105,14 @@ set splitright
 
 colorscheme vividchalk
 
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_custom_ignore = {
- \ 'file': '\v\.(class|jar)$'
+ \ 'file': '\v\.(class|jar)$',
+ \ 'dir': '\v[\/](target|build|.git)'
  \ }
 
 let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<F5>','<c-i>'] }
