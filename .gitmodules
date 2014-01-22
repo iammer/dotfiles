@@ -23,3 +23,6 @@
 [submodule "vim/bundle/spin.vim"]
 	path = vim/bundle/spin.vim
 	url = git@github.com:iammer/spin.vim
+[submodule "vim/bundle/ReplaceWithRegister"]
+	path = vim/bundle/ReplaceWithRegister
+	url = https://github.com/vim-scripts/ReplaceWithRegister.git

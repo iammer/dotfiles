@@ -92,6 +92,8 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+nmap S <Plug>ReplaceWithRegisterOperator
+
 call pathogen#infect()
 call pathogen#helptags()
 
