@@ -144,6 +144,18 @@ nnoremap <leader>p :set paste!<CR>
 
 inoremap jk <esc>
 
+"comma mappings for args
+nnoremap di, f,dT,
+nnoremap ci, f,cT,
+nnoremap da, f,ld2F,i,<ESC>l
+nnoremap ca, f,ld2F,i,<ESC>a
+
+"default to very magic
+nnoremap / /\v
+
+"create lines above and below without insert mode
+nnoremap <leader>o o<ESC>k
+nnoremap <leader>O O<ESC>j
 
 "-----Functions------
 function! SearchGlobalFunc(searchStr)
