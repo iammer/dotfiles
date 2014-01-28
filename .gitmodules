@@ -23,9 +23,6 @@
 [submodule "vim/bundle/spin.vim"]
 	path = vim/bundle/spin.vim
 	url = git@github.com:iammer/spin.vim
-[submodule "vim/bundle/ReplaceWithRegister"]
-	path = vim/bundle/ReplaceWithRegister
-	url = https://github.com/vim-scripts/ReplaceWithRegister.git
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
@@ -35,3 +32,6 @@
 [submodule "vim/bundle/vim-powerline"]
 	path = vim/bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline
+[submodule "vim/bundle/ReplaceWithRegister"]
+	path = vim/bundle/ReplaceWithRegister
+	url = git@github.com:iammer/ReplaceWithRegister.git
