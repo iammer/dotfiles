@@ -14,6 +14,13 @@ if v:progname =~? "evim"
   finish
 endif
 
+"for powerline
+set laststatus=2
+set encoding=utf-8
+let g:Powerline_symbols = 'unicode'
+
+let g:Powerline_symbols_override = { 'BRANCH': [0x2387] , 'LINE': [0x2220] }
+
 :runtime bundle/vim-pathogen/autoload/pathogen.vim
 
 " Use Vim settings, rather than Vi settings (much better!).
