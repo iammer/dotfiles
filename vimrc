@@ -14,18 +14,17 @@ if v:progname =~? "evim"
   finish
 endif
 
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
 "for powerline
 set laststatus=2
 set encoding=utf-8
 let g:Powerline_symbols = 'unicode'
-
 let g:Powerline_symbols_override = { 'BRANCH': [0x2387] , 'LINE': [0x2220] }
 
 :runtime bundle/vim-pathogen/autoload/pathogen.vim
-
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -100,6 +99,12 @@ if !exists(":DiffOrig")
 endif
 
 nmap S <Plug>ReplaceWithRegisterOperator
+
+"for easymotions
+let g:EasyMotion_mapping_f = '<leader>f'
+let g:EasyMotion_mapping_F = '<leader>F'
+let g:EasyMotion_mapping_w = '<leader>r'
+let g:EasyMotion_mapping_b = '<leader>R'
 
 call pathogen#infect()
 call pathogen#helptags()
