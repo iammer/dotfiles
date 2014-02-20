@@ -79,10 +79,12 @@ let g:airline_right_sep="◀"
 
 let g:airline_section_b="%<%t%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
 let g:airline_section_c="%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}%{airline#util#wrap(airline#extensions#branch#get_head(),0)}"
+let g:airline#extensions#whitespace#enabled = 0
 
 "signify config
 let g:signify_vcs_list=['git','svn']
 let g:signify_disable_by_default=1
+let g:signify_sign_change='~'
 
 
 "--------Remaps--------
@@ -168,7 +170,7 @@ augroup END
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		\ | wincmd p | diffthis
 endif
 
