@@ -44,3 +44,6 @@
 [submodule "vim/bundle/vim-signify"]
 	path = vim/bundle/vim-signify
 	url = https://github.com/mhinz/vim-signify.git
+[submodule "vim/bundle/vim-coffee"]
+	path = vim/bundle/vim-coffee
+	url = https://github.com/kchmck/vim-coffee-script.git

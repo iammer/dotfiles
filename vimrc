@@ -55,7 +55,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 "Replace with register config
-nmap S <Plug>ReplaceWithRegisterOperator
+nnoremap S <Plug>ReplaceWithRegisterOperator
 
 "CtrlP Config
 let g:ctrlp_max_files=0
@@ -149,8 +149,9 @@ filetype plugin indent on
 augroup vimrcEx
 au!
 
-" Make .schema use javascript highlighting
+" Filetype aliases
 autocmd BufNewFile,BufRead *.schema set filetype=javascript
+autocmd BufNewFile,BufRead *.less set filetype=css
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
