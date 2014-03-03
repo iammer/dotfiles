@@ -103,6 +103,9 @@ nnoremap ca, f,ld2F,i,<ESC>a
 "default to very magic
 nnoremap / /\v
 
+"This makes more sense
+nnoremap Y y$
+
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
