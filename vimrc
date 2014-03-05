@@ -55,7 +55,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 "Replace with register config
-nnoremap S <Plug>ReplaceWithRegisterOperator
+nmap S <Plug>ReplaceWithRegisterOperator
 
 "CtrlP Config
 let g:ctrlp_max_files=0
@@ -127,6 +127,7 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>w :set wrap!<CR>
 nnoremap <leader>p :set paste!<CR>
 nnoremap <leader>l :set list!<CR>
+nnoremap <leader>m :call g:ToggleNumberMode()<CR>
 
 "create lines above and below without insert mode
 nnoremap <leader>o o<ESC>k
@@ -167,6 +168,15 @@ autocmd BufReadPost *
 \ endif
 
 augroup END
+
+"----------Functions-------------
+function! g:ToggleNumberMode()
+	if (&rnu==1)
+		set nornu
+	else
+		set rnu
+	endif
+endfunc
 
 "----------Commands-------------
 
