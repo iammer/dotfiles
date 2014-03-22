@@ -39,6 +39,8 @@ set autoindent		" always set autoindenting on
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab shiftround
 set splitright
 
+set cursorline
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
@@ -88,7 +90,9 @@ let g:signify_sign_change='~'
 
 
 "--------Remaps--------
+"Make jk work like escape
 inoremap jk <esc>
+vnoremap jk <esc>
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -108,6 +112,10 @@ nnoremap Y y$
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
+
+"easier visual mode indent
+vnoremap , <gv
+vnoremap . >gv
 
 "-----Leader Remaps-----
 nnoremap <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -132,6 +140,7 @@ nnoremap <leader>m :call g:ToggleNumberMode()<CR>
 "create lines above and below without insert mode
 nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
+
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.

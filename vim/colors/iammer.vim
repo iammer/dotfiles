@@ -18,3 +18,5 @@ highlight SignifySignDelete cterm=bold ctermbg=0   ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=0   ctermfg=227
 
 highlight SignColumn		ctermbg=0
+
+highlight CursorLine cterm=none ctermbg=233
