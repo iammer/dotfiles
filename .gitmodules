@@ -47,3 +47,6 @@
 [submodule "vim/bundle/vim-coffee"]
 	path = vim/bundle/vim-coffee
 	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/vim-jade"]
+	path = vim/bundle/vim-jade
+	url = git://github.com/digitaltoad/vim-jade.git
