@@ -161,6 +161,7 @@ au!
 " Filetype aliases
 autocmd BufNewFile,BufRead *.schema set filetype=javascript
 autocmd BufNewFile,BufRead *.less set filetype=css
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
