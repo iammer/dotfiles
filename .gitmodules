@@ -22,7 +22,7 @@
 	ignore = dirty
 [submodule "vim/bundle/spin.vim"]
 	path = vim/bundle/spin.vim
-	url = git@github.com:iammer/spin.vim
+	url = https://github.com/iammer/spin.vim
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
@@ -34,7 +34,7 @@
 	url = https://github.com/Lokaltog/vim-powerline.git
 [submodule "vim/bundle/ReplaceWithRegister"]
 	path = vim/bundle/ReplaceWithRegister
-	url = git@github.com:iammer/ReplaceWithRegister.git
+	url = https://github.com/iammer/ReplaceWithRegister.git
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
