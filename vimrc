@@ -79,9 +79,10 @@ colorscheme iammer
 let g:airline_left_sep="▶"
 let g:airline_right_sep="◀"
 
-let g:airline_section_b="%<%t%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
+let g:airline_section_b="%<%f%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
 let g:airline_section_c="%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}%{airline#util#wrap(airline#extensions#branch#get_head(),0)}"
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 "signify config
 let g:signify_vcs_list=['git','svn']
