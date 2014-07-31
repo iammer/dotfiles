@@ -67,7 +67,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_custom_ignore = {
  \ 'file': '\v\.(class|jar)$',
- \ 'dir': '\v[\/](target|build|.git)'
+ \ 'dir': '\v[\/](target|build|.git|node_modules)'
  \ }
 let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<F5>','<c-i>'] }
 let g:ctrlp_open_multiple_files = '1hjr'
