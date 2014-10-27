@@ -41,8 +41,15 @@ set splitright
 
 set cursorline
 
+set autoread "automatically reload externally modified files if they have not been modified locally
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+
+"Use blowfish encryption if available
+if v:version > 702
+	set cryptmethod=blowfish
+endif
 
 "---------Plugin Config----------
 "for easymotions
@@ -72,6 +79,7 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<F5>','<c-i>'] }
 let g:ctrlp_open_multiple_files = '1hjr'
 
+set bg=dark
 "Colorschemes are in a plugin so must be loaded after pathogen
 colorscheme iammer
 
