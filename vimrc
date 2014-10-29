@@ -89,6 +89,8 @@ let g:signify_vcs_list=['git','svn']
 let g:signify_disable_by_default=1
 let g:signify_sign_change='~'
 
+"Fix html indentation
+let g:html_indent_inctags = "html,body,head,tbody"
 
 "--------Remaps--------
 "Make jk work like escape
