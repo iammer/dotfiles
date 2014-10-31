@@ -56,3 +56,9 @@
 [submodule "vim/bundle/vim.ctrlspace"]
 	path = vim/bundle/vim.ctrlspace
 	url = https://github.com/szw/vim-ctrlspace.git
+[submodule "vim/bundle/ember.vim"]
+	path = vim/bundle/ember.vim
+	url = https://github.com/dsawardekar/ember.vim
+[submodule "vim-mustache-handlebars"]
+	path = vim-mustache-handlebars
+	url = https://github.com/mustache/vim-mustache-handlebars.git
