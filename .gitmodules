@@ -59,9 +59,9 @@
 [submodule "vim/bundle/ember.vim"]
 	path = vim/bundle/ember.vim
 	url = https://github.com/dsawardekar/ember.vim
-[submodule "vim-mustache-handlebars"]
-	path = vim-mustache-handlebars
-	url = https://github.com/mustache/vim-mustache-handlebars.git
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
+[submodule "vim/bundle/vim-mustache-handlebars"]
+	path = vim/bundle/vim-mustache-handlebars
+	url = https://github.com/mustache/vim-mustache-handlebars.git
