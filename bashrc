@@ -133,6 +133,8 @@ if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
 fi
 
+PATH="$PATH:/usr/local/bin"
+
 if [[ "$PATH" != *~/bin* ]]; then
 	PATH="$PATH:~/bin"
 

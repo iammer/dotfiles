@@ -1,0 +1,14 @@
+#!/usr/bin/env groovy
+import org.codehaus.groovy.control.MultipleCompilationErrorsException
+
+def code = System.in.text
+
+try {
+	new GroovyShell().parse(code)
+} catch (MultipleCompilationErrorsException cee) {
+	cee.collector.errors.each {
+		println "cause: ${it.cause.originalMessage}"
+	}
+}
+
+//vim:ft=groovy
