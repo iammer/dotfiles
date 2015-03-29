@@ -79,5 +79,5 @@
 	path = vim/bundle/vim-emblem
 	url = https://github.com/heartsentwined/vim-emblem.git
 [submodule "rust.vim"]
-	path = rust.vim
+	path = vim/bundle/rust.vim
 	url = https://github.com/wting/rust.vim.git
