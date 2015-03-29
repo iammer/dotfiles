@@ -59,6 +59,8 @@
 [submodule "vim/bundle/ember.vim"]
 	path = vim/bundle/ember.vim
 	url = https://github.com/dsawardekar/ember.vim
+	ignore = dirty
+[submodule "vim/bundle/vim-emblem"]
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
@@ -68,9 +70,11 @@
 [submodule "vim/bundle/portkey"]
 	path = vim/bundle/portkey
 	url = https://github.com/dsawardekar/portkey.git
+	ignore = dirty
 [submodule "vim/bundle/camelcasemotion"]
 	path = vim/bundle/camelcasemotion
 	url = https://github.com/vim-scripts/camelcasemotion.git
+	ignore = dirty
 [submodule "vim/bundle/vim-emblem"]
 	path = vim/bundle/vim-emblem
 	url = https://github.com/heartsentwined/vim-emblem.git
