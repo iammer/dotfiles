@@ -60,7 +60,6 @@
 	path = vim/bundle/ember.vim
 	url = https://github.com/dsawardekar/ember.vim
 	ignore = dirty
-[submodule "vim/bundle/vim-emblem"]
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
