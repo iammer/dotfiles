@@ -71,3 +71,9 @@
 [submodule "vim/bundle/camelcasemotion"]
 	path = vim/bundle/camelcasemotion
 	url = https://github.com/vim-scripts/camelcasemotion.git
+[submodule "vim/bundle/vim-emblem"]
+	path = vim/bundle/vim-emblem
+	url = https://github.com/heartsentwined/vim-emblem.git
+[submodule "rust.vim"]
+	path = rust.vim
+	url = https://github.com/wting/rust.vim.git
