@@ -129,6 +129,8 @@ fi
 
 [[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
 
+[[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+
 if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
 fi
