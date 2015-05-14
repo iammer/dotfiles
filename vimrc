@@ -174,6 +174,7 @@ au!
 autocmd BufNewFile,BufRead *.schema set filetype=javascript
 autocmd BufNewFile,BufRead *.less set filetype=css
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.rs set filetype=rust
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
@@ -214,4 +215,3 @@ if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		\ | wincmd p | diffthis
 endif
-
