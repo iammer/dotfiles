@@ -64,3 +64,9 @@
 [submodule "vim/bundle/rust.vim"]
 	path = vim/bundle/rust.vim
 	url = https://github.com/wting/rust.vim.git
+[submodule "vim/bundle/ack.vim"]
+	path = vim/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim
+[submodule "vim/bundle/vim-dispatch"]
+	path = vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch
