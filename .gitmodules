@@ -44,15 +44,9 @@
 [submodule "vim/bundle/vim-jade"]
 	path = vim/bundle/vim-jade
 	url = https://github.com/digitaltoad/vim-jade.git
-[submodule "vim/bundle/ack.vim"]
-	path = vim/bundle/ack.vim
-	url = https://github.com/mileszs/ack.vim.git
 [submodule "vim/bundle/vim.ctrlspace"]
 	path = vim/bundle/vim.ctrlspace
 	url = https://github.com/szw/vim-ctrlspace.git
-[submodule "vim/bundle/ember.vim"]
-	path = vim/bundle/ember.vim
-	url = https://github.com/dsawardekar/ember.vim
 	ignore = dirty
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
@@ -67,6 +61,6 @@
 [submodule "vim/bundle/vim-emblem"]
 	path = vim/bundle/vim-emblem
 	url = https://github.com/heartsentwined/vim-emblem.git
-[submodule "rust.vim"]
+[submodule "vim/bundle/rust.vim"]
 	path = vim/bundle/rust.vim
 	url = https://github.com/wting/rust.vim.git
