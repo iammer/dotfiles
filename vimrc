@@ -19,7 +19,7 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-"for powerline
+"for airline
 set laststatus=2
 set encoding=utf-8
 
@@ -45,6 +45,9 @@ set autoread "automatically reload externally modified files if they have not be
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+
+set display+=lastline " Display as much of a line as possible even if the whole line won't fit on the screen
+
 
 "Use blowfish encryption if available
 if v:version > 702
@@ -74,7 +77,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_custom_ignore = {
  \ 'file': '\v\.(class|jar)$',
- \ 'dir': '\v[\/](target|build|.git|node_modules|tmp)'
+ \ 'dir': '\v[\/](target|build|.git|node_modules|tmp|bower_components|dist|target-eclipse)'
  \ }
 let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<F5>','<c-i>'] }
 let g:ctrlp_open_multiple_files = '1hjr'
@@ -98,6 +101,12 @@ let g:signify_vcs_list=['git','svn']
 let g:signify_disable_by_default=1
 let g:signify_sign_change='~'
 
+"Use ag if available
+if executable('ag')
+	let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
+let g:ack_use_dispatch = 1
+
 "Fix html indentation
 let g:html_indent_inctags = "html,body,head,tbody"
 
@@ -120,6 +129,10 @@ nnoremap / /\v
 
 "This makes more sense
 nnoremap Y y$
+
+"Make enter and space in normal mode work like they do in insert mode
+nnoremap <CR> i<CR><ESC>
+nnoremap <SPACE> i<SPACE><ESC>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -170,12 +183,15 @@ filetype plugin indent on
 augroup vimrcEx
 au!
 
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
 " Filetype aliases
 autocmd BufNewFile,BufRead *.schema set filetype=javascript
 autocmd BufNewFile,BufRead *.less set filetype=css
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufRead *.rs set filetype=rust
 
+" Don't use a swap file when editing a file in dropbox
 autocmd BufNewFile,BufRead */Dropbox/* setlocal noswf
 
 " For all text files set 'textwidth' to 78 characters.
@@ -183,6 +199,7 @@ autocmd FileType text setlocal textwidth=78
 
 autocmd FileType gsp setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 autocmd FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
+autocmd FileType javascript ia f() function() {
 autocmd FileType handlebars setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 autocmd FileType handlebars.ember setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 autocmd FileType hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
