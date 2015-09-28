@@ -70,3 +70,12 @@
 [submodule "vim/bundle/vim-dispatch"]
 	path = vim/bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch
+[submodule "vim/bundle/portkey"]
+	path = vim/bundle/portkey
+	url = https://github.com/dsawardekar/portkey
+[submodule "vim/bundle/ember.vim"]
+	path = vim/bundle/ember.vim
+	url = https://github.com/dsawardekar/ember.vim
+[submodule "vim/bundle/vim-repeat"]
+	path = vim/bundle/vim-repeat
+	url = git@github.com:tpope/vim-repeat
