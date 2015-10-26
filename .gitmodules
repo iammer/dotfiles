@@ -73,9 +73,11 @@
 [submodule "vim/bundle/portkey"]
 	path = vim/bundle/portkey
 	url = https://github.com/dsawardekar/portkey
+	ignore = dirty
 [submodule "vim/bundle/ember.vim"]
 	path = vim/bundle/ember.vim
 	url = https://github.com/dsawardekar/ember.vim
+	ignore = dirty
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
 	url = git@github.com:tpope/vim-repeat
