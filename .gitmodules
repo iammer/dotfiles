@@ -79,3 +79,6 @@
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
 	url = git@github.com:tpope/vim-repeat
+[submodule "desk"]
+	path = desk
+	url = https://github.com/jamesob/desk
