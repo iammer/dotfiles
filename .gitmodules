@@ -81,6 +81,6 @@
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule "desk"]
+[submodule "external/desk"]
 	path = external/desk
-	url = https://github.com/jamesob/desk
+	url = https://github.com/jamesob/desk.git
