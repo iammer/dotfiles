@@ -80,8 +80,7 @@
 	ignore = dirty
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
-	url = git@github.com:tpope/vim-repeat
+	url = https://github.com/tpope/vim-repeat
 [submodule "desk"]
-	path = desk
+	path = external/desk
 	url = https://github.com/jamesob/desk
-	ignore = dirty
