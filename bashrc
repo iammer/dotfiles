@@ -131,6 +131,9 @@ fi
 
 [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
 
+#Invoke desk environment
+[[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
+
 if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
 fi
