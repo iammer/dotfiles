@@ -2,6 +2,9 @@
 
 git pull && git submodule init && git submodule update
 
+#remove ctrlspace since it was removed from git
+[[ -d vim/bundle/vim.ctrlspace ]] && rm -Rf vim/bundle/vim.ctrlspace
+
 [[ -e ~/.gitignore_global ]] || ln -s ~/dotfiles/gitignore_global ~/.gitignore_global 
 
 files="desk ctags agignore"
