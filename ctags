@@ -1,3 +1,13 @@
+--excmd=number
+--recurse=yes
+
+--exclude=dist
+--exclude=tmp
+--exclude=target
+--exclude=.git
+--exclude=node_modules
+--exclude=bower_components
+
 --langdef=groovy
 --langmap=groovy:.groovy
 --regex-groovy=/^[ \t]*[(static|private|public|protected) \t]*(def|[A-Za-z0-9_.]+)[ \t]+([A-Za-z0-9_]+)[ \t]*\(/\2/f,function,functions/

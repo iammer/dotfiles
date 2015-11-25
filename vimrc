@@ -166,6 +166,7 @@ nnoremap <leader>m :call g:ToggleNumberMode()<CR>
 nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
 
+nnoremap <leader>. :CtrlPTag<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
