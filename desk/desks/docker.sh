@@ -7,6 +7,7 @@
 alias dm='docker-machine'
 
 # setup environment for docker-maching
-alias setupDocker='eval "$(docker-machine env dev)"'
+alias setupDMDev='eval "$(docker-machine env dev)"'
+alias setupDMLM='eval "$(docker-machine env lowmem)"'
 
 
