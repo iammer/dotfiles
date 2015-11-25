@@ -121,7 +121,7 @@ else
 	export TERM='xterm-256color'
 fi
 
-export EDITOR='/usr/bin/vim'
+export EDITOR=`which vim`
 
 if [ -f ~/.bash_functions ]; then
 	. ~/.bash_functions
