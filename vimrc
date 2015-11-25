@@ -167,6 +167,7 @@ nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
 
 nnoremap <leader>. :CtrlPTag<CR>
+nnoremap <leader>it :Start! ctags<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
