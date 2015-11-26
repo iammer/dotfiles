@@ -121,7 +121,7 @@ else
 	export TERM='xterm-256color'
 fi
 
-export EDITOR='/usr/bin/vim'
+export EDITOR=`which vim`
 
 if [ -f ~/.bash_functions ]; then
 	. ~/.bash_functions
@@ -130,6 +130,9 @@ fi
 [[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
 
 [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+
+#Invoke desk environment
+[[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
 
 if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
