@@ -20,3 +20,6 @@ highlight SignifySignChange cterm=bold ctermbg=0   ctermfg=227
 highlight SignColumn		ctermbg=0
 
 highlight CursorLine cterm=none ctermbg=235
+
+highlight Comment ctermfg=99
+
