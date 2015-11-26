@@ -144,3 +144,5 @@ if [[ "$PATH" != *~/bin* ]]; then
 fi
 
 [[ -s ~/bin/git-completion.bash ]] && source ~/bin/git-completion.bash
+
+[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
