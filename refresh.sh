@@ -7,7 +7,9 @@ git pull && git submodule init && git submodule update
 
 [[ -e ~/.gitignore_global ]] || ln -s ~/dotfiles/gitignore_global ~/.gitignore_global 
 
-files="desk ctags agignore"
+#files that where added after install script was first created and may not be
+#present in newer versions
+files="desk ctags agignore inputrc"
 for file in $files; do
 	[[ -L ~/.$file ]] || ln -s ~/dotfiles/$file ~/.$file  
 done
