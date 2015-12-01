@@ -2,6 +2,9 @@
 # 
 # Description: desk for min grails work
 #
+
+cd ~/code/min
+
 # Drop and recreate the cirle_test database
 alias dropci="echo 'drop database circle_test; create database circle_test owner ubuntu;' | psql postgres"
 
