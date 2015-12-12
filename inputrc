@@ -1,2 +1,5 @@
+#Use Vim keys
 set editing-mode vi
+
+#Still use C-L to clear screen
 C-L:clear-screen
