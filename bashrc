@@ -149,3 +149,5 @@ fi
 [[ -s ~/bin/git-completion.bash ]] && source ~/bin/git-completion.bash
 
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
+
+[[ -f ~/dotfiles/external/z/z.sh ]] && source ~/dotfiles/external/z/z.sh
