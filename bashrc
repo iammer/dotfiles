@@ -121,33 +121,43 @@ else
 	export TERM='xterm-256color'
 fi
 
+#vim may be different places on different machines
 export EDITOR=`which vim`
 
+#include bash_functions if it exists
 if [ -f ~/.bash_functions ]; then
 	. ~/.bash_functions
 fi
 
+#run gvm if it exists
 [[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
 
+#run nvm if it exits
 [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
 
 #Invoke desk environment
 [[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
 
+#invoke bash_local if it exists
 if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
 fi
 
+#Add /usr/local/bin to PATH
 PATH="$PATH:/usr/local/bin"
 
+#Add ~/bin and ~/bin_local to PATH
 if [[ "$PATH" != *~/bin* ]]; then
 	PATH="$PATH:~/bin"
 
 	[[ -d ~/bin_local ]] && PATH="$PATH:~/bin_local"
 fi
 
+#Add Git completion to bash
 [[ -s ~/bin/git-completion.bash ]] && source ~/bin/git-completion.bash
 
+#Setup Go if installed
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
 
+#Init Z
 [[ -f ~/dotfiles/external/z/z.sh ]] && source ~/dotfiles/external/z/z.sh
