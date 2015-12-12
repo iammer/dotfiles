@@ -7,7 +7,6 @@ My dotfiles
 1. Old dotfiles will be in dotfiles\_old, you can delete this if you are sure you won't need them anymore.  Symlinks will be created from dotfiles to your home repo.
 1. If a ~/bin directory exists it will be renamed to bin\_local (added to the path in bashrc)
 
-
 ####Usage####
 Includes vim, tmux, and git configurations; bashrc, bash\_aliases, and bash\_functions; common utils in bin (included in PATH in bashrc)
 
@@ -43,20 +42,31 @@ Includes vim, tmux, and git configurations; bashrc, bash\_aliases, and bash\_fun
 Plugins:
 * ack.vim
 * bufexplorer
+* camelcasemotion
 * ctrlp.vim
+* ember.vim
 * emmet-vim
+* gist-vim
 * nerdtree
+* portkey
 * ReplaceWithRegister
+* rust.vim
 * spin.vim
 * vim-airline
 * vim-coffee
 * vim-colorschems
+* vim-dispatch
 * vim-easymotion
+* vim-emblem
 * vim-fugitive
 * vim-jade
+* vim-javascript
+* vim-mustache-handlebars
 * vim-pathogen
+* vim-repeat
 * vim-signify
 * vim-surround
+* webapi-vim
  
 #####Tmux#####
 * vi mode buffers
@@ -79,9 +89,13 @@ Plugins:
 * up \<num\> will go to the *num*th parent of the current directory
 * grailsTestOrder will list the last tests run in the current grails project in order
 
+####Included External Tools####
+* [Desk] (https://github.com/jamesob/desk)
+* [Z] (https://github.com/rupa/z)
+
 
 ####install.sh####
 Creates the needed symlinks.  Run once after cloning the repo
 
 ####refresh.sh####
-Run to update dotfiles with most recent versions
+Run to update dotfiles with most recent versions and to create any new symlinks
