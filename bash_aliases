@@ -11,6 +11,7 @@ alias d.='desk .'
 #Aliases to use ag and git diff in color with less
 alias gdl='git diff --color=always | less -R'
 alias agless='ag --pager "less -r"'
+alias :q=exit
 
 #md5sum on linux is md5 on bsd/osx 
 [[ -f /sbin/md5 ]] && alias md5sum='md5 -r'
