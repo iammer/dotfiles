@@ -14,5 +14,10 @@ for file in $files; do
 	[[ -L ~/.$file ]] || ln -s ~/dotfiles/$file ~/.$file  
 done
 
+config_files="nvim"
+for file in $config_files; do
+	[[ -L ~/.config/$file ]] || ln -s ~/dotfiles/$file ~/.config/$file
+done
+
 [[ -e ~/dotfiles/bin/git-completion.bash ]] || wget https://github.com/git/git/raw/master/contrib/completion/git-completion.bash -O ~/dotfiles/bin/git-completion.bash
 

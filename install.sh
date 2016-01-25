@@ -1,6 +1,6 @@
 #!/bin/bash
 ############################
-# .make.sh
+# install.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
@@ -9,6 +9,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files="bashrc bash_aliases bash_functions vimrc vim tmux.conf irssi gitignore_global desk agignore ctags inputrc"    # list of files/folders to symlink in homedir
+config_files="nvim"   #list of files/folders to symlink in .config
 mac_files="tmux.osx.conf"
 
 ##########
@@ -28,7 +29,7 @@ esac
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
+mkdir -p $olddir/config
 echo "...done"
 
 # change to the dotfiles directory
@@ -42,6 +43,15 @@ for file in $files; do
     mv ~/.$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
+done
+
+[[ -d ~/.config ]] || mkdir ~/.config
+
+for file in $config_files; do
+	echo "Moving existing config from ~/.config/$file to $olddir/config/$file"
+	mv ~/.config/$file ~/dotfiles_old/config/$file
+	echo "Creating symlink to ~/.config/$file"
+	ln -s $dir/$file ~/.config/$file
 done
 
 echo "Moving old .gitconfig"
