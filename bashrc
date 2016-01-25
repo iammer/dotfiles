@@ -129,19 +129,19 @@ if [ -f ~/.bash_functions ]; then
 	. ~/.bash_functions
 fi
 
-#run gvm if it exists
-[[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
-
-#run nvm if it exits
-#[[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
-
-#Invoke desk environment
-[[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
-
 #invoke bash_local if it exists
 if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
 fi
+
+#run gvm if it exists
+[[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
+
+#run nvm if it exits (don't on slow systems file)
+[[ $IS_SLOW_DISK ]] || ([[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh)
+
+#Invoke desk environment
+[[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
 
 #Add /usr/local/bin to PATH
 PATH="$PATH:/usr/local/bin"
