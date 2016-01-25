@@ -121,8 +121,8 @@ else
 	export TERM='xterm-256color'
 fi
 
-#vim may be different places on different machines
-export EDITOR=`which vim`
+#vim may be different places on different machines (use nvim if available)
+export EDITOR=`which nvim || which vim`
 
 #include bash_functions if it exists
 if [ -f ~/.bash_functions ]; then
