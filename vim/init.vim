@@ -219,6 +219,11 @@ autocmd BufReadPost *
 \ endif
 
 augroup END
+"----------NVIM specific---------
+if has("nvim")
+	" Matchit seems to be broken
+	let loaded_matchit = 1
+endif
 
 "----------Functions-------------
 function! g:ToggleNumberMode()
