@@ -133,7 +133,7 @@ fi
 [[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
 
 #run nvm if it exits
-[[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+#[[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
 
 #Invoke desk environment
 [[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
