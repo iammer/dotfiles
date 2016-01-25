@@ -137,8 +137,11 @@ fi
 #run gvm if it exists
 [[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
 
-#run nvm if it exits (don't on slow systems file)
-[[ $IS_SLOW_DISK ]] || ([[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh)
+#Things which should only be done on fast systems (not raspberry pis)
+if [[ ! $IS_SLOW_DISK ]]; then
+	#run nvm if it exits
+   [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+fi
 
 #Invoke desk environment
 [[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
