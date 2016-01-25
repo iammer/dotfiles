@@ -3,3 +3,5 @@
 	email = email@michaelratliff.com
 [core]
 	excludesfile = ~/.gitignore_global
+[push]
+	default = simple
