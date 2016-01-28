@@ -153,6 +153,8 @@ nnoremap <leader>sm :so $MYVIMRC<CR>
 
 nnoremap <leader>h :noh<CR>
 
+nnoremap <leader>t :TagbarToggle<CR>
+
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
