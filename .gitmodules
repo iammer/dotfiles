@@ -89,3 +89,6 @@
 [submodule "external/z"]
 	path = external/z
 	url = https://github.com/rupa/z.git
+[submodule "vim/bundle/vim-airline-themes"]
+	path = vim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
