@@ -88,4 +88,4 @@
 	url = https://github.com/jamesob/desk.git
 [submodule "external/z"]
 	path = external/z
-	url = git@github.com:rupa/z
+	url = https://github.com/rupa/z.git
