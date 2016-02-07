@@ -38,28 +38,10 @@
 [submodule "vim/bundle/vim-signify"]
 	path = vim/bundle/vim-signify
 	url = https://github.com/mhinz/vim-signify.git
-[submodule "vim/bundle/vim-coffee"]
-	path = vim/bundle/vim-coffee
-	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule "vim/bundle/vim-jade"]
-	path = vim/bundle/vim-jade
-	url = https://github.com/digitaltoad/vim-jade.git
-[submodule "vim/bundle/vim-javascript"]
-	path = vim/bundle/vim-javascript
-	url = https://github.com/pangloss/vim-javascript
-[submodule "vim/bundle/vim-mustache-handlebars"]
-	path = vim/bundle/vim-mustache-handlebars
-	url = https://github.com/mustache/vim-mustache-handlebars.git
 [submodule "vim/bundle/camelcasemotion"]
 	path = vim/bundle/camelcasemotion
 	url = https://github.com/vim-scripts/camelcasemotion.git
 	ignore = dirty
-[submodule "vim/bundle/vim-emblem"]
-	path = vim/bundle/vim-emblem
-	url = https://github.com/heartsentwined/vim-emblem.git
-[submodule "vim/bundle/rust.vim"]
-	path = vim/bundle/rust.vim
-	url = https://github.com/wting/rust.vim.git
 [submodule "vim/bundle/webapi-vim"]
 	path = vim/bundle/webapi-vim
 	url = https://github.com/mattn/webapi-vim.git
