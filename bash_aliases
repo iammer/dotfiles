@@ -9,6 +9,8 @@ alias tmAvailKeys='echo {a..z} {A..Z} | tr -d $(tmux lsk | sed "s/bind-key \(-r\
 alias d.='desk .'
 alias snvm='source ~/.nvm/nvm.sh'
 
+which nvim > /dev/null && alias vim='nvim'
+
 #Aliases to use ag and git diff in color with less
 alias gdl='git diff --color=always | less -R'
 alias agless='ag --pager "less -r"'
