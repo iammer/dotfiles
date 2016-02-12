@@ -23,3 +23,4 @@ highlight CursorLine cterm=none ctermbg=235
 
 highlight Comment ctermfg=99
 
+highlight Conceal ctermbg=233

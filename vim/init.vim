@@ -108,6 +108,21 @@ if executable('ag')
 endif
 let g:ack_use_dispatch = 1
 
+"I don't like polyglots js indentation
+let g:polyglot_diabled = ['javascript']
+
+let g:javascript_conceal            = 1
+let g:javascript_conceal_function   = "ƒ"
+let g:javascript_conceal_null       = "ø"
+let g:javascript_conceal_this       = "@"
+let g:javascript_conceal_return     = "⇚"
+let g:javascript_conceal_undefined  = "¿"
+let g:javascript_conceal_NaN        = "ℕ"
+let g:javascript_conceal_prototype  = "¶"
+let g:javascript_conceal_static     = "•"
+let g:javascript_conceal_super      = "Ω"
+highlight Conceal ctermbg=233
+
 "Fix html indentation
 let g:html_indent_inctags = "html,body,head,tbody"
 
@@ -170,6 +185,8 @@ nnoremap <leader>O O<ESC>j
 
 nnoremap <leader>. :CtrlPTag<CR>
 nnoremap <leader>it :Start! ctags -R<CR>
+
+nnoremap <leader>c :call g:ToggleConceal()<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -236,6 +253,14 @@ function! g:ToggleNumberMode()
 		set rnu
 	endif
 endfunc
+
+function! g:ToggleConceal()
+	if (&conceallevel)
+		setlocal conceallevel=0
+	else
+		setlocal conceallevel=2
+	endif
+endfunction
 
 "----------Commands-------------
 
