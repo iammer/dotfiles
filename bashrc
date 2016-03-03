@@ -167,3 +167,10 @@ fi
 
 #Init Z
 [[ -f ~/dotfiles/external/z/z.sh ]] && source ~/dotfiles/external/z/z.sh
+
+#Sensible bash
+[[ -f ~/dotfiles/external/bash-sensible/sensible.bash ]] && source ~/dotfiles/external/bash-sensible/sensible.bash
+
+#Re-enable > clobber
+set +o noclobber
+

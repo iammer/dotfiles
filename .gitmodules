@@ -83,3 +83,6 @@
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "external/bash-sensible"]
+	path = external/bash-sensible
+	url = https://github.com/mrzool/bash-sensible.git
