@@ -174,3 +174,7 @@ fi
 #Re-enable > clobber
 set +o noclobber
 
+#nice less options
+export PAGER=less
+export LESS="-iMSx4 -FX"
+
