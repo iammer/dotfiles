@@ -15,6 +15,7 @@ for file in $files; do
 done
 
 config_files="nvim"
+[[ -d ~/.config ]] || mkdir -p ~/.config
 for file in $config_files; do
 	[[ -L ~/.config/$file ]] || ln -s ~/dotfiles/$file ~/.config/$file
 done
