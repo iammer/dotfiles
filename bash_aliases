@@ -9,6 +9,9 @@ alias tmAvailKeys='echo {a..z} {A..Z} | tr -d $(tmux lsk | sed "s/bind-key \(-r\
 alias d.='desk .'
 alias snvm='source ~/.nvm/nvm.sh'
 alias vim=nvim
+alias datestamp='date +%Y%m%d'
+alias timestamp='date +%Y%m%d%H%M%S'
+alias unixstamp='date +%s'
 
 which nvim > /dev/null && alias vim='nvim'
 
