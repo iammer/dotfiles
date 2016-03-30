@@ -12,6 +12,8 @@ alias datestamp='date +%Y%m%d'
 alias timestamp='date +%Y%m%d%H%M%S'
 alias unixstamp='date +%s'
 
+alias lessbook='LESS=${LESS/S/} less'
+
 which nvim > /dev/null && alias vim='nvim'
 
 #Aliases to use ag and git diff in color with less
