@@ -48,9 +48,6 @@
 [submodule "vim/bundle/gist-vim"]
 	path = vim/bundle/gist-vim
 	url = https://github.com/mattn/gist-vim
-[submodule "vim/bundle/ack.vim"]
-	path = vim/bundle/ack.vim
-	url = https://github.com/mileszs/ack.vim
 [submodule "vim/bundle/vim-dispatch"]
 	path = vim/bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch
