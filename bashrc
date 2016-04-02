@@ -150,10 +150,12 @@ fi
 PATH="$PATH:/usr/local/bin"
 
 #Add ~/bin and ~/bin_local to PATH
-if [[ "$PATH" != *~/bin* ]]; then
-	PATH="$PATH:~/bin"
+if [[ "$PATH" != *$HOME/bin* ]]; then
+	PATH="$PATH:$HOME/bin"
+fi
 
-	[[ -d ~/bin_local ]] && PATH="$PATH:~/bin_local"
+if [[ "$PATH" != *$HOME/bin_local* ]]; then
+	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
 fi
 
 #Add Git completion to bash
