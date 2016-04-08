@@ -13,6 +13,7 @@ alias timestamp='date +%Y%m%d%H%M%S'
 alias unixstamp='date +%s'
 
 alias lessb='LESS=${LESS/S/} less'
+alias agless='ag --pager "less -R"'
 
 which nvim > /dev/null && alias vim='nvim'
 
