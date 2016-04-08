@@ -165,6 +165,9 @@ fi
 #Add rust bin path if exists
 [[ -d $HOME/.cargo/bin ]] && PATH="$PATH:$HOME/.cargo/bin"
 
+#phantonjs bin path
+[[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
+
 #Init Z
 [[ -f ~/dotfiles/external/z/z.sh ]] && source ~/dotfiles/external/z/z.sh
 
