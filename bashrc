@@ -179,5 +179,5 @@ set +o noclobber
 
 #nice less options
 export PAGER=less
-export LESS="-iMSx4 -FX"
+export LESS="-iRMSx4 -FX"
 
