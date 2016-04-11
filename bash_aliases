@@ -12,13 +12,11 @@ alias datestamp='date +%Y%m%d'
 alias timestamp='date +%Y%m%d%H%M%S'
 alias unixstamp='date +%s'
 
-alias lessbook='LESS=${LESS/S/} less'
+alias lessb='LESS=${LESS/S/} less'
+alias agless='ag --pager "less -R"'
 
 which nvim > /dev/null && alias vim='nvim'
 
-#Aliases to use ag and git diff in color with less
-alias gdl='git diff --color=always | less -R'
-alias agless='ag --pager "less -r"'
 alias :q=exit
 
 #md5sum on linux is md5 on bsd/osx 

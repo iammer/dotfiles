@@ -14,6 +14,7 @@ alias dropci="echo 'drop database circle_test; create database circle_test owner
 
 # Drop and recreate the min database
 alias dropmin="echo 'drop database minmasterdevelopment; create database minmasterdevelopment owner minmaster;' | psql postgres"
+alias dropstudio="echo 'drop database minmasterstudio; create database minmasterstudio owner minmaster;' | psql postgres"
 
 # Test min the same way it would be tested in CircleCI
 alias testci="dropci && redis-cli flushall && cg test-app -plain-output"
@@ -29,6 +30,8 @@ alias dqg='grails -reloading -Djava.awt.headless=true -Ddeployment=spida/dev-sql
 
 # Run grails with dev deployment
 alias dg='grails -reloading -Djava.awt.headless=true -Ddeployment=spida/dev'
+
+alias dsg='grails -reloading -Djava.awt.headless=true -Ddeployment=spida/studio'
 
 # Run grails with circleci deployment
 alias cg='grails -Djava.awt.headless=true -Ddeployment=spida/circleci'

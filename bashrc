@@ -164,6 +164,9 @@ fi
 #Setup Go if installed
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
 
+#phantonjs bin path
+[[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
+
 #Init Z
 [[ -f ~/dotfiles/external/z/z.sh ]] && source ~/dotfiles/external/z/z.sh
 
@@ -175,5 +178,5 @@ set +o noclobber
 
 #nice less options
 export PAGER=less
-export LESS="-iMSx4 -FX"
+export LESS="-iRMSx4 -FX"
 
