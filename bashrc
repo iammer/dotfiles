@@ -164,9 +164,6 @@ fi
 #Setup Go if installed
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
 
-#Add rust bin path if exists
-[[ -d $HOME/.cargo/bin ]] && PATH="$PATH:$HOME/.cargo/bin"
-
 #Init Z
 [[ -f ~/dotfiles/external/z/z.sh ]] && source ~/dotfiles/external/z/z.sh
 
