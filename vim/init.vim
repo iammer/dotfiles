@@ -37,6 +37,7 @@ set hidden
 set autoindent		" always set autoindenting on
 
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab shiftround
+set noequalalways
 set splitright
 
 set cursorline

@@ -150,10 +150,12 @@ fi
 PATH="$PATH:/usr/local/bin"
 
 #Add ~/bin and ~/bin_local to PATH
-if [[ "$PATH" != *~/bin* ]]; then
-	PATH="$PATH:~/bin"
+if [[ "$PATH" != *$HOME/bin* ]]; then
+	PATH="$PATH:$HOME/bin"
+fi
 
-	[[ -d ~/bin_local ]] && PATH="$PATH:~/bin_local"
+if [[ "$PATH" != *$HOME/bin_local* ]]; then
+	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
 fi
 
 #Add Git completion to bash
@@ -162,8 +164,8 @@ fi
 #Setup Go if installed
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
 
-#Add rust bin path if exists
-[[ -d $HOME/.cargo/bin ]] && PATH="$PATH:$HOME/.cargo/bin"
+#phantonjs bin path
+[[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
 
 #Init Z
 [[ -f ~/dotfiles/external/z/z.sh ]] && source ~/dotfiles/external/z/z.sh
