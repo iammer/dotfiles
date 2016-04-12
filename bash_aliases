@@ -14,6 +14,7 @@ alias unixstamp='date +%s'
 
 alias lessb='LESS=${LESS/S/} less'
 alias agless='ag --pager "less -R"'
+alias gitwip="git commit -a -m '[ci skip] WIP' && git pull && git push"
 
 which nvim > /dev/null && alias vim='nvim'
 
