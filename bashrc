@@ -161,6 +161,8 @@ fi
 
 #Setup Go if installed
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
+[[ -d $HOME/code/go ]] && export GOPATH="$GOPATH:$HOME/code/go"
+[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
 
 #Add rust bin path if exists
 [[ -d $HOME/.cargo/bin ]] && PATH="$PATH:$HOME/.cargo/bin"
@@ -180,4 +182,3 @@ set +o noclobber
 #nice less options
 export PAGER=less
 export LESS="-iRMSx4 -FX"
-
