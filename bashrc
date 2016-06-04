@@ -122,7 +122,7 @@ else
 fi
 
 #vim may be different places on different machines (use nvim if available)
-export EDITOR=`which nvim || which vim`
+export EDITOR=`which nvim 2>/dev/null || which vim 2> /dev/null || which vi`
 
 #include bash_functions if it exists
 if [ -f ~/.bash_functions ]; then
