@@ -21,7 +21,9 @@ set nocompatible
 
 "for airline
 set laststatus=2
-set encoding=utf-8
+if !exists('&encoding')
+	set encoding=utf-8
+endif
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -272,3 +274,12 @@ if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		\ | wincmd p | diffthis
 endif
+
+"Some useful portkey commands
+command! VR belowright vsplit +R
+command! SR belowright split +R
+command! VA belowright vsplit +A
+command! SA belowright split +A
+command! T Etest
+command! VT belowright vsplit +T
+command! ST belowright split +T
