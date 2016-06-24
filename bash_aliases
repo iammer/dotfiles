@@ -17,7 +17,7 @@ alias agless='ag --pager "less -R"'
 
 alias gitwip="git commit -a -m '[ci skip] WIP' && git pull && git push"
 
-which nvim > /dev/null && alias vim="`which nvim`"
+which nvim 2> /dev/null > /dev/null && alias vim="`which nvim`"
 
 alias :q=exit
 

@@ -122,7 +122,7 @@ else
 fi
 
 #vim may be different places on different machines (use nvim if available)
-export EDITOR=`which nvim || which vim`
+export EDITOR=`which nvim 2>/dev/null || which vim 2> /dev/null || which vi`
 
 #include bash_functions if it exists
 if [ -f ~/.bash_functions ]; then
@@ -160,6 +160,8 @@ fi
 
 #Setup Go if installed
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
+[[ -d $HOME/code/go ]] && export GOPATH="$GOPATH:$HOME/code/go"
+[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
 
 #phantonjs bin path
 [[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
@@ -182,7 +184,6 @@ export PAGER=less
 # -F = don't do anything if less than one screen of text
 # -X don't init term at begin and exit
 export LESS="-iRMSx4 -FX"
-
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
