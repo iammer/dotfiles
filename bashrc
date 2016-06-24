@@ -134,9 +134,6 @@ if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
 fi
 
-#run gvm if it exists
-[[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
-
 #Things which should only be done on fast systems (not raspberry pis)
 if [[ ! $IS_SLOW_DISK ]]; then
 	#run nvm if it exits
@@ -178,5 +175,15 @@ set +o noclobber
 
 #nice less options
 export PAGER=less
+# -i = ignore case
+# -R = Raw control chars (make color work)
+# -S = Chop long line
+# -x 4 = tabs = 4 spaces
+# -F = don't do anything if less than one screen of text
+# -X don't init term at begin and exit
 export LESS="-iRMSx4 -FX"
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
