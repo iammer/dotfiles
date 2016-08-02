@@ -80,3 +80,6 @@
 [submodule "external/bash-sensible"]
 	path = external/bash-sensible
 	url = https://github.com/mrzool/bash-sensible.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
