@@ -72,7 +72,7 @@ esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -98,8 +98,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -125,19 +125,19 @@ fi
 export EDITOR=`which nvim 2>/dev/null || which vim 2> /dev/null || which vi`
 
 #include bash_functions if it exists
-if [ -f ~/.bash_functions ]; then
-	. ~/.bash_functions
+if [ -f $HOME/.bash_functions ]; then
+	. $HOME/.bash_functions
 fi
 
 #invoke bash_local if it exists
-if [ -f ~/.bash_local ]; then
-	. ~/.bash_local
+if [ -f $HOME/.bash_local ]; then
+	. $HOME/.bash_local
 fi
 
 #Things which should only be done on fast systems (not raspberry pis)
 if [[ ! $IS_SLOW_DISK ]]; then
 	#run nvm if it exits
-   [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+   [[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
 fi
 
 #Invoke desk environment
@@ -156,21 +156,24 @@ if [[ "$PATH" != *$HOME/bin_local* ]]; then
 fi
 
 #Add Git completion to bash
-[[ -s ~/bin/git-completion.bash ]] && source ~/bin/git-completion.bash
+[[ -s $HOME/bin/git-completion.bash ]] && source $HOME/bin/git-completion.bash
 
 #Setup Go if installed
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
-[[ -d $HOME/code/go ]] && export GOPATH="$GOPATH:$HOME/code/go"
-[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
+if [[ -d $HOME/code/go ]]; then
+	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
+	#Add local go path if not there already and handle empty GOPATH if needed
+	[[ $GOPATH == *"$HOME/code/go"* ]] || GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
+fi
 
 #phantonjs bin path
 [[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
 
 #Init Z
-[[ -f ~/dotfiles/external/z/z.sh ]] && source ~/dotfiles/external/z/z.sh
+[[ -f $HOME/dotfiles/external/z/z.sh ]] && source $HOME/dotfiles/external/z/z.sh
 
 #Sensible bash
-[[ -f ~/dotfiles/external/bash-sensible/sensible.bash ]] && source ~/dotfiles/external/bash-sensible/sensible.bash
+[[ -f $HOME/dotfiles/external/bash-sensible/sensible.bash ]] && source $HOME/dotfiles/external/bash-sensible/sensible.bash
 
 #Re-enable > clobber
 set +o noclobber
