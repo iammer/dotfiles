@@ -29,6 +29,7 @@ endif
 set backspace=indent,eol,start
 
 set nobackup		" do not keep a backup file, use versions instead
+set backupskip=/tmp/*,/private/tmp/* " fix issue with crontab (See :h crontab)
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -51,6 +52,8 @@ set listchars=tab:▸\ ,eol:¬
 
 set display+=lastline " Display as much of a line as possible even if the whole line won't fit on the screen
 
+set mouse= "Disable mouse (Neovim enables by default)
+
 
 "Use blowfish encryption if available
 if v:version > 702 && !has("nvim")
@@ -63,12 +66,12 @@ let g:EasyMotion_mapping_f = '<leader>f'
 let g:EasyMotion_mapping_F = '<leader>F'
 let g:EasyMotion_mapping_w = '<leader>]'
 let g:EasyMotion_mapping_b = '<leader>['
-
-"Load pathogen
+"
+""Load pathogen
 :runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
-
+"
 "Replace with register config
 nmap S <Plug>ReplaceWithRegisterOperator
 
@@ -99,7 +102,7 @@ let g:airline_section_c="%{airline#util#wrap(airline#extensions#hunks#get_hunks(
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tagbar#enabled = 0
-
+"
 "signify config
 let g:signify_vcs_list=['git','svn']
 let g:signify_disable_by_default=1
@@ -191,6 +194,10 @@ nnoremap <leader>it :Start! ctags -R<CR>
 
 nnoremap <leader>c :call g:ToggleConceal()<CR>
 
+"sort block with gs
+nnoremap gS gs
+noremap gs :sort u<CR>
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -204,7 +211,7 @@ endif
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
 
-" Put these in an autocmd group, so that we can delete them easily.
+"Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
 au!
 
