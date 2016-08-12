@@ -134,17 +134,22 @@ if [ -f $HOME/.bash_local ]; then
 	. $HOME/.bash_local
 fi
 
-#Things which should only be done on fast systems (not raspberry pis)
-if [[ ! $IS_SLOW_DISK ]]; then
+#Load NVM dynamically if it is slowing things down
+if [[ ! $DYNAMIC_LOAD_NVM ]]; then
 	#run nvm if it exits
    [[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
+else
+	nvm() {
+		snvm
+		nvm "$@"
+	}
 fi
 
 #Invoke desk environment
 [[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
 
 #Add /usr/local/bin to PATH
-PATH="$PATH:/usr/local/bin"
+[[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
 
 #Add ~/bin and ~/bin_local to PATH
 if [[ "$PATH" != *$HOME/bin* ]]; then
@@ -154,6 +159,7 @@ fi
 if [[ "$PATH" != *$HOME/bin_local* ]]; then
 	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
 fi
+
 
 #Add Git completion to bash
 [[ -s $HOME/bin/git-completion.bash ]] && source $HOME/bin/git-completion.bash
@@ -191,3 +197,5 @@ export LESS="-iRMSx4 -FX"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
