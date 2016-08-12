@@ -134,16 +134,7 @@ if [ -f $HOME/.bash_local ]; then
 	. $HOME/.bash_local
 fi
 
-#Load NVM dynamically if it is slowing things down
-if [[ ! $DYNAMIC_LOAD_NVM ]]; then
-	#run nvm if it exits
-   [[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
-else
-	nvm() {
-		snvm
-		nvm "$@"
-	}
-fi
+[[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh ${IS_SLOW_DISK:+--no-use}
 
 #Invoke desk environment
 [[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
