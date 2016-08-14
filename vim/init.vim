@@ -204,40 +204,40 @@ filetype plugin indent on
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
-au!
+	autocmd!
 
-autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+	autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
-" Filetype aliases
-autocmd BufNewFile,BufRead *.schema set filetype=javascript
-autocmd BufNewFile,BufRead *.less set filetype=css
-autocmd BufNewFile,BufRead *.md set filetype=markdown
-autocmd BufNewFile,BufRead *.rs set filetype=rust
+	" Filetype aliases
+	autocmd BufNewFile,BufRead *.schema set filetype=javascript
+	autocmd BufNewFile,BufRead *.less set filetype=css
+	autocmd BufNewFile,BufRead *.md set filetype=markdown
+	autocmd BufNewFile,BufRead *.rs set filetype=rust
 
-" Don't use a swap file when editing a file in dropbox
-autocmd BufNewFile,BufRead */Dropbox/* setlocal noswf
+	" Don't use a swap file when editing a file in dropbox
+	autocmd BufNewFile,BufRead */Dropbox/* setlocal noswf
 
-" For all text files set 'textwidth' to 78 characters.
-autocmd FileType text setlocal textwidth=78
+	" For all text files set 'textwidth' to 78 characters.
+	autocmd FileType text setlocal textwidth=78
 
-autocmd FileType gsp setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
-autocmd FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
-autocmd FileType javascript ia f() function() {
-autocmd FileType handlebars setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
-autocmd FileType handlebars.ember setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
-autocmd FileType hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
-autocmd FileType spin setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
-autocmd FileType groovy let @w = "yiWIprintln \"\": ${A}\"j"
+	autocmd FileType gsp setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
+	autocmd FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
+	autocmd FileType javascript ia f() function() {
+	autocmd FileType handlebars setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
+	autocmd FileType handlebars.ember setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
+	autocmd FileType hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
+	autocmd FileType spin setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
+	autocmd FileType groovy let @w = "yiWIprintln \"\": ${A}\"j"
 
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-" Also don't do it when the mark is in the first line, that is the default
-" position when opening a file.
-autocmd BufReadPost *
-\ if line("'\"") > 1 && line("'\"") <= line("$") |
-\   exe "normal! g`\"" |
-\ endif
+	" When editing a file, always jump to the last known cursor position.
+	" Don't do it when the position is invalid or when inside an event handler
+	" (happens when dropping a file on gvim).
+	" Also don't do it when the mark is in the first line, that is the default
+	" position when opening a file.
+	autocmd BufReadPost *
+	\ if line("'\"") > 1 && line("'\"") <= line("$") |
+	\   exe "normal! g`\"" |
+	\ endif
 
 augroup END
 "----------NVIM specific---------
