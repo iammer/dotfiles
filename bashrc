@@ -173,6 +173,9 @@ fi
 #Sensible bash
 [[ -f ~/dotfiles/external/bash-sensible/sensible.bash ]] && source ~/dotfiles/external/bash-sensible/sensible.bash
 
+#Rustup
+[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
+
 #Re-enable > clobber
 set +o noclobber
 
