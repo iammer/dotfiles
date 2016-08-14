@@ -14,4 +14,8 @@ datedir() {
 	mkdir $datedir && cd $datedir
 }
 
+comskip() {
+	git commit -m "[ci skip] $1" && git pull && git push
+}
+
 # vim:ft=sh

@@ -72,7 +72,7 @@ esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -98,8 +98,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -122,32 +122,25 @@ else
 fi
 
 #vim may be different places on different machines (use nvim if available)
-export EDITOR=`which nvim || which vim`
+export EDITOR=`which nvim 2>/dev/null || which vim 2> /dev/null || which vi`
 
 #include bash_functions if it exists
-if [ -f ~/.bash_functions ]; then
-	. ~/.bash_functions
+if [ -f $HOME/.bash_functions ]; then
+	. $HOME/.bash_functions
 fi
 
 #invoke bash_local if it exists
-if [ -f ~/.bash_local ]; then
-	. ~/.bash_local
+if [ -f $HOME/.bash_local ]; then
+	. $HOME/.bash_local
 fi
 
-#run gvm if it exists
-[[ -s ~/.gvm/bin/gvm-init.sh ]] && source ~/.gvm/bin/gvm-init.sh
-
-#Things which should only be done on fast systems (not raspberry pis)
-if [[ ! $IS_SLOW_DISK ]]; then
-	#run nvm if it exits
-   [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
-fi
+[[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh ${IS_SLOW_DISK:+--no-use}
 
 #Invoke desk environment
 [[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
 
 #Add /usr/local/bin to PATH
-PATH="$PATH:/usr/local/bin"
+[[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
 
 #Add ~/bin and ~/bin_local to PATH
 if [[ "$PATH" != *$HOME/bin* ]]; then
@@ -158,20 +151,26 @@ if [[ "$PATH" != *$HOME/bin_local* ]]; then
 	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
 fi
 
+
 #Add Git completion to bash
-[[ -s ~/bin/git-completion.bash ]] && source ~/bin/git-completion.bash
+[[ -s $HOME/bin/git-completion.bash ]] && source $HOME/bin/git-completion.bash
 
 #Setup Go if installed
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
+if [[ -d $HOME/code/go ]]; then
+	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
+	#Add local go path if not there already and handle empty GOPATH if needed
+	[[ $GOPATH == *"$HOME/code/go"* ]] || GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
+fi
 
 #phantonjs bin path
 [[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
 
 #Init Z
-[[ -f ~/dotfiles/external/z/z.sh ]] && source ~/dotfiles/external/z/z.sh
+[[ -f $HOME/dotfiles/external/z/z.sh ]] && source $HOME/dotfiles/external/z/z.sh
 
 #Sensible bash
-[[ -f ~/dotfiles/external/bash-sensible/sensible.bash ]] && source ~/dotfiles/external/bash-sensible/sensible.bash
+[[ -f $HOME/dotfiles/external/bash-sensible/sensible.bash ]] && source $HOME/dotfiles/external/bash-sensible/sensible.bash
 
 #Rustup
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
@@ -181,5 +180,16 @@ set +o noclobber
 
 #nice less options
 export PAGER=less
+# -i = ignore case
+# -R = Raw control chars (make color work)
+# -S = Chop long line
+# -x 4 = tabs = 4 spaces
+# -F = don't do anything if less than one screen of text
+# -X don't init term at begin and exit
 export LESS="-iRMSx4 -FX"
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
