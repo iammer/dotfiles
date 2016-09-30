@@ -160,7 +160,7 @@ fi
 if [[ -d $HOME/code/go ]]; then
 	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
 	#Add local go path if not there already and handle empty GOPATH if needed
-	[[ $GOPATH == *"$HOME/code/go"* ]] || GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
+	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
 fi
 
 #phantonjs bin path
@@ -173,7 +173,10 @@ fi
 [[ -f $HOME/dotfiles/external/bash-sensible/sensible.bash ]] && source $HOME/dotfiles/external/bash-sensible/sensible.bash
 
 #Rustup
-[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
+if [[ -f $HOME/.cargo/env ]]; then
+	source $HOME/.cargo/env
+	[[ $LD_LIBRARY_PATH == *"/usr/local/lib"* ]] || export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
+fi
 
 #Re-enable > clobber
 set +o noclobber
