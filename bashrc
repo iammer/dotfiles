@@ -166,11 +166,11 @@ fi
 #phantonjs bin path
 [[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
 
-#Init Z
-[[ -f $HOME/dotfiles/external/z/z.sh ]] && source $HOME/dotfiles/external/z/z.sh
-
 #Sensible bash
 [[ -f $HOME/dotfiles/external/bash-sensible/sensible.bash ]] && source $HOME/dotfiles/external/bash-sensible/sensible.bash
+
+#Init Z
+[[ -f $HOME/dotfiles/external/z/z.sh ]] && source $HOME/dotfiles/external/z/z.sh
 
 #Rustup
 if [[ -f $HOME/.cargo/env ]]; then
@@ -196,3 +196,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 [[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
+
+HISTIGNORE="$HISTIGNORE:stophist"
