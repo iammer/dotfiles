@@ -16,6 +16,9 @@ alias agless='ag --pager "less -R"'
 
 alias gitwip="git commit -a -m '[ci skip] WIP' && git pull && git push"
 
+#Stop history logging. Use if you need to send a password as an arg
+alias stophist="unset HISTFILE; unset PROMPT_COMMAND"
+
 which nvim 2> /dev/null > /dev/null && alias vim="`which nvim`"
 
 alias :q=exit

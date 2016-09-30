@@ -193,3 +193,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 [[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
+
+HISTIGNORE="$HISTIGNORE:stophist"
