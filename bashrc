@@ -20,6 +20,8 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+HISTIGNORE="$HISTIGNORE:stophist"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 #shopt -s checkwinsize
@@ -93,13 +95,16 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+#Add /usr/local/bin to PATH
+[[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
 
-if [ -f $HOME/.bash_aliases ]; then
-    . $HOME/.bash_aliases
+#Add ~/bin and ~/bin_local to PATH
+if [[ "$PATH" != *$HOME/bin* ]]; then
+	PATH="$PATH:$HOME/bin"
+fi
+
+if [[ "$PATH" != *$HOME/bin_local* ]]; then
+	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -121,47 +126,8 @@ else
 	export TERM='xterm-256color'
 fi
 
-#vim may be different places on different machines (use nvim if available)
-export EDITOR=`which nvim 2>/dev/null || which vim 2> /dev/null || which vi`
-
-#include bash_functions if it exists
-if [ -f $HOME/.bash_functions ]; then
-	. $HOME/.bash_functions
-fi
-
-#invoke bash_local if it exists
-if [ -f $HOME/.bash_local ]; then
-	. $HOME/.bash_local
-fi
-
-[[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh ${IS_SLOW_DISK:+--no-use}
-
-#Invoke desk environment
-[[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
-
-#Add /usr/local/bin to PATH
-[[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
-
-#Add ~/bin and ~/bin_local to PATH
-if [[ "$PATH" != *$HOME/bin* ]]; then
-	PATH="$PATH:$HOME/bin"
-fi
-
-if [[ "$PATH" != *$HOME/bin_local* ]]; then
-	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
-fi
-
-
 #Add Git completion to bash
 [[ -s $HOME/bin/git-completion.bash ]] && source $HOME/bin/git-completion.bash
-
-#Setup Go if installed
-[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
-if [[ -d $HOME/code/go ]]; then
-	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
-	#Add local go path if not there already and handle empty GOPATH if needed
-	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
-fi
 
 #phantonjs bin path
 [[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
@@ -169,14 +135,11 @@ fi
 #Sensible bash
 [[ -f $HOME/dotfiles/external/bash-sensible/sensible.bash ]] && source $HOME/dotfiles/external/bash-sensible/sensible.bash
 
+#Invoke desk environment
+[[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
+
 #Init Z
 [[ -f $HOME/dotfiles/external/z/z.sh ]] && source $HOME/dotfiles/external/z/z.sh
-
-#Rustup
-if [[ -f $HOME/.cargo/env ]]; then
-	source $HOME/.cargo/env
-	[[ $LD_LIBRARY_PATH == *"/usr/local/lib"* ]] || export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
-fi
 
 #Re-enable > clobber
 set +o noclobber
@@ -191,10 +154,46 @@ export PAGER=less
 # -X don't init term at begin and exit
 export LESS="-iRMSx4 -FX"
 
+#Setup NVM if installed
+[[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh ${IS_SLOW_DISK:+--no-use}
+
+#Setup Go if installed
+[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
+if [[ -d $HOME/code/go ]]; then
+	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
+	#Add local go path if not there already and handle empty GOPATH if needed
+	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
+fi
+
+#Rustup
+if [[ -f $HOME/.cargo/env ]]; then
+	source $HOME/.cargo/env
+	[[ $LD_LIBRARY_PATH == *"/usr/local/lib"* ]] || export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
+fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
+#vim may be different places on different machines (use nvim if available)
+export EDITOR=`which nvim 2>/dev/null || which vim 2> /dev/null || which vi`
 
-HISTIGNORE="$HISTIGNORE:stophist"
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
+fi
+
+#include bash_functions if it exists
+if [ -f $HOME/.bash_functions ]; then
+	. $HOME/.bash_functions
+fi
+
+#invoke bash_local if it exists
+if [ -f $HOME/.bash_local ]; then
+	. $HOME/.bash_local
+fi
+
