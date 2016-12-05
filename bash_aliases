@@ -30,4 +30,5 @@ alias :q=exit
 
 #md5sum on linux is md5 on bsd/osx 
 [[ -f /sbin/md5 ]] && alias md5sum='md5 -r'
+
 # vim:ft=sh
