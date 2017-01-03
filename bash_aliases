@@ -26,7 +26,9 @@ alias dkr='docker'
 
 which nvim 2> /dev/null > /dev/null && alias vim="`which nvim`"
 
-alias :q=exit
+#in case I forget I am not in vim
+alias :q='exit'
+alias jk='clear' 
 
 #md5sum on linux is md5 on bsd/osx 
 [[ -f /sbin/md5 ]] && alias md5sum='md5 -r'
