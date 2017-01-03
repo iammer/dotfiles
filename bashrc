@@ -154,27 +154,6 @@ export PAGER=less
 # -X don't init term at begin and exit
 export LESS="-iRMSx4 -FX"
 
-#Setup NVM if installed
-[[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh ${IS_SLOW_DISK:+--no-use}
-
-#Setup Go if installed
-[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
-if [[ -d $HOME/code/go ]]; then
-	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
-	#Add local go path if not there already and handle empty GOPATH if needed
-	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
-fi
-
-#Rustup
-if [[ -f $HOME/.cargo/env ]]; then
-	source $HOME/.cargo/env
-	[[ $LD_LIBRARY_PATH == *"/usr/local/lib"* ]] || export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
-fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 #vim may be different places on different machines (use nvim if available)
 export EDITOR=`which nvim 2>/dev/null || which vim 2> /dev/null || which vi`
 
@@ -197,3 +176,33 @@ if [ -f $HOME/.bash_local ]; then
 	. $HOME/.bash_local
 fi
 
+#Setup nvm if installed, lazy-load if IS_SLOW_DISK (set in .bash_local)
+if [[ -s $HOME/.nvm/nvm.sh ]]; then
+	NVM_SCRIPT=$HOME/.nvm/nvm.sh
+	if [[ $IS_SLOW_DISK ]]; then
+		NODE_CMDS="nvm node npm"
+		for NODE_CMD in $NODE_CMDS; do
+			alias $NODE_CMD="unalias $NODE_CMDS && source $NVM_SCRIPT && $NODE_CMD"
+		done
+	else
+		source $NVM_SCRIPT
+	fi
+fi
+
+#Setup Go if installed
+[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
+if [[ -d $HOME/code/go ]]; then
+	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
+	#Add local go path if not there already and handle empty GOPATH if needed
+	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
+fi
+
+#Rustup
+if [[ -f $HOME/.cargo/env ]]; then
+	source $HOME/.cargo/env
+	[[ $LD_LIBRARY_PATH == *"/usr/local/lib"* ]] || export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
+fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
