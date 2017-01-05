@@ -4,6 +4,7 @@
 #
 
 cd ~/code/min
+source ~/.nvm/nvm.sh
 nvm use 4
 
 #Cleans and compiles interchange and projectmanager (solves issues that occur when switch from ember non-ember min)

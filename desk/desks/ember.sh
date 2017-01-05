@@ -2,6 +2,7 @@
 # Description: Common ember tasks
 #
 
+. ~/.nvm/nvm.sh
 nvm use 4
 
 # ember test
