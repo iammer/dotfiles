@@ -96,7 +96,7 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 #Add /usr/local/bin to PATH
-[[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
+[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
 
 #Add ~/bin and ~/bin_local to PATH
 if [[ "$PATH" != *$HOME/bin* ]]; then
@@ -137,6 +137,7 @@ fi
 
 #Invoke desk environment
 [[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
+[[ -f $HOME/dotfiles/external/desk/shell_plugins/bash/desk ]] && source $HOME/dotfiles/external/desk/shell_plugins/bash/desk
 
 #Init Z
 [[ -f $HOME/dotfiles/external/z/z.sh ]] && source $HOME/dotfiles/external/z/z.sh
