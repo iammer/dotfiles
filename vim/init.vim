@@ -54,7 +54,6 @@ set display+=lastline " Display as much of a line as possible even if the whole 
 
 set mouse= "Disable mouse (Neovim enables by default)
 
-
 "Use blowfish encryption if available
 if v:version > 702 && !has("nvim")
 	set cryptmethod=blowfish
@@ -79,6 +78,8 @@ nmap S <Plug>ReplaceWithRegisterOperator
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 let g:ctrlp_use_caching = 1
+let g:ctrlp_by_filename = 1
+let g:ctrlp_regexp = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_custom_ignore = {
