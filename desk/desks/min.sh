@@ -3,9 +3,10 @@
 # Description: desk for min grails work
 #
 
-cd ~/code/min
-source ~/.nvm/nvm.sh
+. ~/.nvm/nvm.sh
 nvm use 4
+
+cd ~/code/min
 
 #Cleans and compiles interchange and projectmanager (solves issues that occur when switch from ember non-ember min)
 alias supaclean="pushd interchange && grails clean && grails compile && popd && pushd projectmanager && grails clean && grails compile && popd"
