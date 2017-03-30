@@ -156,7 +156,7 @@ export PAGER=less
 export LESS="-iRMSx4 -FX"
 
 #vim may be different places on different machines (use nvim if available)
-export EDITOR=`which nvim 2>/dev/null || which vim 2> /dev/null || which vi`
+export EDITOR=$(which nvim 2>/dev/null || which vim 2> /dev/null || which vi)
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -185,8 +185,9 @@ if [[ -s $HOME/.nvm/nvm.sh ]]; then
 		for NODE_CMD in $NODE_CMDS; do
 			alias $NODE_CMD="unalias $NODE_CMDS && source $NVM_SCRIPT && $NODE_CMD"
 		done
+		unset NODE_CMDS NODE_CMD
 	else
-		source $NVM_SCRIPT
+		[[ -z $NVM_BIN ]] && source $NVM_SCRIPT
 	fi
 fi
 
@@ -207,3 +208,18 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+#Remove any duplicate entries from PATH
+if [ -n "$PATH" ]; then
+	old_PATH=$PATH:; PATH=
+	while [ -n "$old_PATH" ]; do
+		x=${old_PATH%%:*}   # the first remaining entry
+		case $PATH: in
+			*:"$x":*) ;;   # already there
+			*) PATH=$PATH:$x;;   # not there yet
+		esac
+		old_PATH=${old_PATH#*:}
+	done
+	PATH=${PATH#:}
+	unset old_PATH x
+fi

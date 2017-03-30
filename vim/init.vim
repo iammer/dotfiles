@@ -111,12 +111,12 @@ let g:signify_sign_change='~'
 
 "Use ag if available
 if executable('ag')
-	let g:ackprg = 'ag --nogroup --nocolor --column'
+	let g:ackprg = 'ag --vimgrep --smart-case'
 endif
-let g:ack_use_dispatch = 1
+"let g:ack_use_dispatch = 1
 
 "I don't like polyglots js indentation
-let g:polyglot_diabled = ['javascript']
+let g:polyglot_disabled = ['javascript']
 
 let g:javascript_conceal            = 1
 let g:javascript_conceal_function   = "ƒ"
