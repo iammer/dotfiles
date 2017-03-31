@@ -187,7 +187,7 @@ if [[ -s $HOME/.nvm/nvm.sh ]]; then
 		done
 		unset NODE_CMDS NODE_CMD
 	else
-		[[ $PATH = "*$HOME/.nvm*" ]] || source $NVM_SCRIPT
+		[[ -z $DESK_NAME ]] && source $NVM_SCRIPT
 	fi
 fi
 
