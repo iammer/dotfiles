@@ -187,7 +187,7 @@ if [[ -s $HOME/.nvm/nvm.sh ]]; then
 		done
 		unset NODE_CMDS NODE_CMD
 	else
-		[[ -z $NVM_BIN ]] && source $NVM_SCRIPT
+		source $NVM_SCRIPT
 	fi
 fi
 
