@@ -30,7 +30,7 @@ rust() {
 	curl https://sh.rustup.rs -sSf -o /tmp/rust-init &&
 	chmod a+x /tmp/rust-init &&
 	/tmp/rust-init -y --no-modify-path --default-toolchain nightly &&
-	rm /tmp/rus-init
+	rm /tmp/rust-init
 }
 
 # Install SDKMan
