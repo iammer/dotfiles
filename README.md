@@ -1,16 +1,16 @@
-###Dotfiles###
+### Dotfiles
 My dotfiles
 
-####Installation####
+#### Installation
 1. Clone this repo into your home directory
 1. Run install.sh
 1. Old dotfiles will be in dotfiles\_old, you can delete this if you are sure you won't need them anymore.  Symlinks will be created from dotfiles to your home repo.
 1. If a ~/bin directory exists it will be renamed to bin\_local (added to the path in bashrc)
 
-####Usage####
+#### Usage
 Includes vim, tmux, and git configurations; bashrc, bash\_aliases, and bash\_functions; common utils in bin (included in PATH in bashrc)
 
-#####Vim####
+##### Vim
 * Defaults to 4-character wide tabs unless editing javascript or html.
 * Leader key is the default \\
 * \\l toggles showing tabs and eol characters
@@ -68,7 +68,7 @@ Plugins:
 * vim-surround
 * webapi-vim
  
-#####Tmux#####
+##### Tmux
 * vi mode buffers
 * right part of status line created from output of ~/bin/tmux-status. Shows time and system load
 * Select current pane with hjkl instead of arrow keys
@@ -85,17 +85,17 @@ Plugins:
 * Running tmSwapB \<char\> will bind the given char to swap the pane marked with tmSwapA with the current pane
 * Running tmAvailKeys with list the unbound tmux keys
 
-#####Bash#####
+##### Bash
 * up \<num\> will go to the *num*th parent of the current directory
 * grailsTestOrder will list the last tests run in the current grails project in order
 
-####Included External Tools####
+#### Included External Tools
 * [Desk] (https://github.com/jamesob/desk)
 * [Z] (https://github.com/rupa/z)
 
 
-####install.sh####
+#### install.sh
 Creates the needed symlinks.  Run once after cloning the repo
 
-####refresh.sh####
+#### refresh.sh
 Run to update dotfiles with most recent versions and to create any new symlinks
