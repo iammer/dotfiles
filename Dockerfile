@@ -6,7 +6,10 @@ RUN apt-get update && \
 		silversearcher-ag entr jq parallel\
 		xz-utils openssl wget bzip2 w3m\
 		zip software-properties-common\
+		locales\
 	&& \
+	sed -i '/en_US.UTF-8/ s/# //' /etc/locale.gen && \
+	locale-gen && \
 	apt-add-repository -y ppa:neovim-ppa/stable && \
 	apt update && \
 	apt -y install neovim && \
@@ -25,8 +28,8 @@ RUN chown -R michael:michael /home/michael && \
 		cd $HOME && \
 		chmod 600 .ssh/authorized_keys && \
 		pushd dotfiles && \
-			./install.sh  && \
 			git remote set-url origin https://github.com/iammer/dotfiles.git && \
+			./install.sh  && \
 		popd && \
 		rm -R dotfiles_old && \
 		mkdir code \
