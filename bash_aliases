@@ -1,4 +1,5 @@
 #Tmux aliases
+which tmux-next 2> /dev/null > /dev/null && alias tmux=tmux-next
 alias tm='tmux attach || tmux new'
 alias tmMarkPane='echo $TMUX_PANE > ~/.markedPane'
 alias tmJoinPane='tmux join-pane -s `cat ~/.markedPane`'
