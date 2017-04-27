@@ -48,3 +48,13 @@ alias dcg='grails -debug-forked -reloading -Djava.awt.headless=true -Ddeployment
 grailsTestOrder() {
     grep testsuite target/test-reports/TESTS-TestSuites.xml | grep -v testsuites | cut -d\  -f8-9 | sed -E 's/name="(.*)" package="(.*)"/\2.\1/' | grep .
 }
+
+# Repeat citests whenever a .groovy file changes
+rtestci() {
+	PARAMS="$@"
+	find . -name '*.groovy' | entr -cs "(echo 'drop database circle_test; create database circle_test owner ubuntu;' | psql postgres) && redis-cli flushall && grails -Djava.awt.headless=true -Ddeployment=spida/circleci test-app $PARAMS"
+}
+
+
+
+
