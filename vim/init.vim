@@ -35,6 +35,9 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
+"use undofiles to persist undo
+set undofile
+
 set number
 set hidden
 set autoindent		" always set autoindenting on
@@ -67,7 +70,7 @@ let g:EasyMotion_mapping_w = '<leader>]'
 let g:EasyMotion_mapping_b = '<leader>['
 "
 ""Load pathogen
-:runtime bundle/vim-pathogen/autoload/pathogen.vim
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 "
@@ -88,6 +91,9 @@ let g:ctrlp_custom_ignore = {
  \ }
 let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<F5>','<c-i>'] }
 let g:ctrlp_open_multiple_files = '1hjr'
+
+"Make ^Wf use CtrlP
+nmap <C-W>f <C-P><C-\>w
 
 set bg=dark
 "Colorschemes are in a plugin so must be loaded after pathogen
@@ -141,12 +147,6 @@ inoremap jk <esc>
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
-"comma mappings for args
-nnoremap di, f,dT,
-nnoremap ci, f,cT,
-nnoremap da, f,ld2F,i,<ESC>l
-nnoremap ca, f,ld2F,i,<ESC>a
-
 "default to very magic
 nnoremap / /\v
 
@@ -174,8 +174,6 @@ nnoremap <leader>em :vsp $MYVIMRC<CR>
 nnoremap <leader>sm :so $MYVIMRC<CR>
 
 nnoremap <leader>h :noh<CR>
-
-nnoremap <leader>t :TagbarToggle<CR>
 
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
