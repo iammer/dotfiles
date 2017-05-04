@@ -195,7 +195,7 @@ nnoremap <leader>c :call g:ToggleConceal()<CR>
 
 "sort block with gs
 nnoremap gS gs
-noremap gs :sort u<CR>
+nnoremap gs Vip:sort u<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
