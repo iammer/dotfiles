@@ -34,5 +34,22 @@ rust() {
 }
 
 # Install SDKMan
-alias sdkman='curl -s "https://get.sdkman.io" | bash'
+sdkman () {
+	curl -s "https://get.sdkman.io" | bash
+	pushd $HOME/dotfiles
+		git checkout -- bash_profile
+	popd
+	source $HOME/.sdkman/bin/sdkman-init.sh
+}
+
+# Setup for Min Dev
+minDev() {
+	nvm
+	nvm install 4.2
+	source $HOME/.nvm/nvm.sh
+	sdkman
+	sdk install java 7u80
+	sdk install groovy 2.1.8
+	sdk install grails 2.3.4
+}
 
