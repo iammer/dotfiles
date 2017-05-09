@@ -9,7 +9,7 @@ git pull && git submodule init && git submodule update
 
 #files that where added after install script was first created and may not be
 #present in newer versions
-files="desk ctags agignore inputrc bash_profile"
+files="desk ctags agignore inputrc bash_profile jline.rc"
 for file in $files; do
 	if [[ ! -L ~/.$file ]]; then
 		if [[ -f ~/.$file ]]; then
