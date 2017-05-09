@@ -45,8 +45,8 @@ sdkman () {
 # Setup for Min Dev
 minDev() {
 	nvm
-	nvm install 4.2
 	source $HOME/.nvm/nvm.sh
+	nvm install 4.2
 	sdkman
 	sdk install java 7u80
 	sdk install groovy 2.1.8
