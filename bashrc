@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export DOTFILES=$HOME/dotfiles
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -133,14 +135,14 @@ fi
 [[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
 
 #Sensible bash
-[[ -f $HOME/dotfiles/external/bash-sensible/sensible.bash ]] && source $HOME/dotfiles/external/bash-sensible/sensible.bash
+[[ -f $DOTFILES/external/bash-sensible/sensible.bash ]] && source $DOTFILES/external/bash-sensible/sensible.bash
 
 #Invoke desk environment
 [[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
-[[ -f $HOME/dotfiles/external/desk/shell_plugins/bash/desk ]] && source $HOME/dotfiles/external/desk/shell_plugins/bash/desk
+[[ -f $DOTFILES/external/desk/shell_plugins/bash/desk ]] && source $DOTFILES/external/desk/shell_plugins/bash/desk
 
 #Init Z
-[[ -f $HOME/dotfiles/external/z/z.sh ]] && source $HOME/dotfiles/external/z/z.sh
+[[ -f $DOTFILES/external/z/z.sh ]] && source $DOTFILES/external/z/z.sh
 
 #Re-enable > clobber
 set +o noclobber
@@ -160,16 +162,16 @@ export EDITOR=$(which nvim 2>/dev/null || which vim 2> /dev/null || which vi)
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
+# ~/dotfiles/bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f $HOME/dotfiles/bash_aliases ]; then
-    source $HOME/.bash_aliases
+if [ -f $DOTFILES/bash_aliases ]; then
+    source $DOTFILES/bash_aliases
 fi
 
 #include bash_functions if it exists
-if [ -f $HOME/dotfiles/bash_functions ]; then
-	source $HOME/.bash_functions
+if [ -f $DOTFILES/bash_functions ]; then
+	source $DOTFILES/bash_functions
 fi
 
 #invoke bash_local if it exists
@@ -179,8 +181,8 @@ fi
 
 #invoke platform specific files if they exist
 PLATFORM=$(uname | tr '[:upper:]' '[:lower:]')
-if [ -f $HOME/dotfiles/bash_$PLATFORM ]; then
-	source $HOME/dotfiles/bash_$PLATFORM
+if [ -f $DOTFILES/bash_$PLATFORM ]; then
+	source $DOTFILES/bash_$PLATFORM
 fi
 
 #Setup nvm if installed, lazy-load if IS_SLOW_DISK (set in .bash_local)
