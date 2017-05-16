@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc bash_aliases bash_functions vimrc vim tmux.conf irssi gitignore_global desk agignore ctags inputrc bash_profile jline.rc"    # list of files/folders to symlink in homedir
+files="bashrc vimrc vim tmux.conf irssi gitignore_global desk agignore ctags inputrc bash_profile jline.rc"    # list of files/folders to symlink in homedir
 config_files="nvim"   #list of files/folders to symlink in .config
 mac_files="tmux.osx.conf"
 

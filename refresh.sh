@@ -20,6 +20,14 @@ for file in $files; do
 	fi
 done
 
+#files that where symlinked at one point, but it didn't actually make sense
+files="bash_aliases bash_functions"
+for file in $files; do
+	if [[ -L ~/.$file ]]; then
+		rm ~/.$file
+	fi
+done
+
 config_files="nvim"
 [[ -d ~/.config ]] || mkdir -p ~/.config
 for file in $config_files; do

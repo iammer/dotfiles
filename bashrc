@@ -163,18 +163,24 @@ export EDITOR=$(which nvim 2>/dev/null || which vim 2> /dev/null || which vi)
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f $HOME/.bash_aliases ]; then
-    . $HOME/.bash_aliases
+if [ -f $HOME/dotfiles/bash_aliases ]; then
+    source $HOME/.bash_aliases
 fi
 
 #include bash_functions if it exists
-if [ -f $HOME/.bash_functions ]; then
-	. $HOME/.bash_functions
+if [ -f $HOME/dotfiles/bash_functions ]; then
+	source $HOME/.bash_functions
 fi
 
 #invoke bash_local if it exists
 if [ -f $HOME/.bash_local ]; then
-	. $HOME/.bash_local
+	source $HOME/.bash_local
+fi
+
+#invoke platform specific files if they exist
+PLATFORM=$(uname | tr '[:upper:]' '[:lower:]')
+if [ -f $HOME/dotfiles/bash_$PLATFORM ]; then
+	source $HOME/dotfiles/bash_$PLATFORM
 fi
 
 #Setup nvm if installed, lazy-load if IS_SLOW_DISK (set in .bash_local)
