@@ -4,6 +4,7 @@ set -x
 if [ ! -f /etc/startup-script-did-run ]; then
 	apt-get update
 	apt-get install -y ssh git man less sudo mosh tmux curl build-essential silversearcher-ag entr jq parallel xz-utils openssl wget bzip2 w3m zip software-properties-common locales
+	apt-get -y dist-upgrade
 	sed -i '/en_US.UTF-8/ s/# //' /etc/locale.gen
 	locale-gen
 	apt-add-repository -y ppa:neovim-ppa/stable
