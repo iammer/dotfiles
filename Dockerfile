@@ -6,7 +6,7 @@ RUN apt-get update && \
 		silversearcher-ag entr jq parallel\
 		xz-utils openssl wget bzip2 w3m\
 		zip software-properties-common\
-		locales\
+		locales tree \
 	&& \
 	sed -i '/en_US.UTF-8/ s/# //' /etc/locale.gen && \
 	locale-gen && \
