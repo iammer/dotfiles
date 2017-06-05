@@ -189,9 +189,10 @@ fi
 if [[ -s $HOME/.nvm/nvm.sh ]]; then
 	NVM_SCRIPT=$HOME/.nvm/nvm.sh
 	if [[ $IS_SLOW_DISK ]]; then
-		NODE_CMDS="nvm node npm"
+		source $NVM_SCRIPT --no-use
+		NODE_CMDS="node npm"
 		for NODE_CMD in $NODE_CMDS; do
-			alias $NODE_CMD="unalias $NODE_CMDS && source $NVM_SCRIPT && $NODE_CMD"
+			alias $NODE_CMD="unalias $NODE_CMDS && nvm use default && $NODE_CMD"
 		done
 		unset NODE_CMDS NODE_CMD
 	else
