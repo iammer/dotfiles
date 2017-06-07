@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git pull && git submodule init && git submodule update
+git pull && git submodule init && git submodule sync && git submodule update --init --recursive
 
 #remove ctrlspace since it was removed from git
 [[ -d vim/bundle/vim.ctrlspace ]] && rm -Rf vim/bundle/vim.ctrlspace
