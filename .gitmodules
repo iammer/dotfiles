@@ -64,7 +64,7 @@
 	url = https://github.com/tpope/vim-repeat
 [submodule "external/desk"]
 	path = external/desk
-	url = https://github.com/jamesob/desk.git
+	url = https://github.com/iammer/desk.git
 [submodule "external/z"]
 	path = external/z
 	url = https://github.com/rupa/z.git
