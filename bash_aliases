@@ -18,6 +18,8 @@ alias agless='ag --pager "less -R"'
 alias gitwip="git commit -a -m '[ci skip] WIP' && git pull && git push"
 alias gpo="git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
 
+alias randpass="head -c 12 < /dev/urandom | base64"
+
 #Stop history logging. Use if you need to send a password as an arg
 alias stophist='set +o history; O_PROMPT_COMMAND=$PROMPT_COMMAND; unset PROMPT_COMMAND'
 alias starthist='set -o history; PROMPT_COMMAND=$O_PROMPT_COMMAND; unset O_PROMPT_COMMAND'
