@@ -34,4 +34,7 @@ alias jk='clear'
 #md5sum on linux is md5 on bsd/osx 
 [[ -f /sbin/md5 ]] && alias md5sum='md5 -r'
 
+#Headless chrome
+alias headless-'chrome=google-chrome --headless --disable-gpu --remote-debugging-port=9222'
+
 # vim:ft=sh
