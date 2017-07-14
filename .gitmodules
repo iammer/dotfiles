@@ -89,3 +89,6 @@
 [submodule "vim/bundle/simpledb"]
 	path = vim/bundle/simpledb
 	url = https://github.com/ivalkeen/vim-simpledb
+[submodule "external/bash-snippets"]
+	path = external/bash-snippets
+	url = https://github.com/alexanderepstein/Bash-Snippets.git
