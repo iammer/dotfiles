@@ -137,15 +137,20 @@ fi
 #Sensible bash
 [[ -f $DOTFILES/external/bash-sensible/sensible.bash ]] && source $DOTFILES/external/bash-sensible/sensible.bash
 
+### Undo sensible things I don't like
+#Re-enable > clobber
+set +o noclobber
+
+#Case-sensitive glob and append cd automatically
+shopt -u nocaseglob autocd 2> /dev/null
+
+
 #Invoke desk environment
 [[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
 [[ -f $DOTFILES/external/desk/shell_plugins/bash/desk ]] && source $DOTFILES/external/desk/shell_plugins/bash/desk
 
 #Init Z
 [[ -f $DOTFILES/external/z/z.sh ]] && source $DOTFILES/external/z/z.sh
-
-#Re-enable > clobber
-set +o noclobber
 
 #nice less options
 export PAGER=less
