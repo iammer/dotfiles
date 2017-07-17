@@ -64,7 +64,7 @@
 	url = https://github.com/tpope/vim-repeat
 [submodule "external/desk"]
 	path = external/desk
-	url = https://github.com/jamesob/desk.git
+	url = https://github.com/iammer/desk.git
 [submodule "external/z"]
 	path = external/z
 	url = https://github.com/rupa/z.git
@@ -86,3 +86,9 @@
 [submodule "vim/bundle/ack.vim"]
 	path = vim/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "vim/bundle/simpledb"]
+	path = vim/bundle/simpledb
+	url = https://github.com/ivalkeen/vim-simpledb
+[submodule "external/bash-snippets"]
+	path = external/bash-snippets
+	url = https://github.com/alexanderepstein/Bash-Snippets.git

@@ -1,0 +1,52 @@
+#!/bin/bash
+#OSX specific things
+
+# don't use osx's janky ctags
+BREW=$(which brew)
+if [[ ! -z "$BREW" ]]; then
+
+	BREW_PREFIX=$($BREW --prefix)
+	if [[ -x $BREW_PREFIX/bin/ctags ]]; then
+		alias ctags="$BREW_PREFIX/bin/ctags"
+	fi
+fi
+
+mktmpfs() {
+	size=${1:-64}
+
+	sector=$(expr $size \* 1024 \* 1024 / 512)
+	device_name=$(hdid -nomount "ram://${sector}" | awk '{print $1}')
+	if [ $? -ne 0 ]; then
+		echo "Could not create disk image." >&2
+		exit $?
+	fi
+
+	newfs_hfs $device_name > /dev/null
+	if [ $? -ne 0 ]; then
+		echo "Could not format disk image." >&2
+		exit $?
+	fi
+
+	echo $device_name
+}
+
+rmtmpfs() {
+	hdiutil detach $1
+}
+
+alias gls='gls --color=auto'
+alias ggrep='ggrep --color=auto'
+
+#Things to subsitite with GNU Utils
+ALIAS_GNU="find sed awk xargs cp seq shuf shred sleep sort split sum tac tail head tar ls grep mkdir rm"
+for util in $ALIAS_GNU; do
+	#if there is a gnu util available, alias it
+	if which g$util > /dev/null; then
+		#Reuse options to existing alias if it exists
+		if alias >/dev/null $util 2>&1; then
+			eval $(alias $util | sed "s/'\(\|.*[^g]\)$util\(.*\)'/'\1g$util\2'/")
+		else
+			alias $util=g$util
+		fi
+	fi
+done

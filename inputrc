@@ -1,5 +1,9 @@
 #Use Vim keys
 set editing-mode vi
 
-#Still use C-L to clear screen
-C-L:clear-screen
+set keymap vi-command
+"\C-l": clear-screen
+"e": shell-expand-line
+
+set keymap vi-insert
+"\C-l": clear-screen

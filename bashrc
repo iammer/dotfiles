@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export DOTFILES=$HOME/dotfiles
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -19,6 +21,8 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+HISTIGNORE="$HISTIGNORE:stophist"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -54,7 +58,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1="\[\033[38;5;10m\]\u@\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;12m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
 else
 	PS1='\u@\h:\w\$ '
 fi
@@ -93,13 +97,16 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+#Add /usr/local/bin to PATH
+[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
 
-if [ -f $HOME/.bash_aliases ]; then
-    . $HOME/.bash_aliases
+#Add ~/bin and ~/bin_local to PATH
+if [[ "$PATH" != *$HOME/bin* ]]; then
+	PATH="$PATH:$HOME/bin"
+fi
+
+if [[ "$PATH" != *$HOME/bin_local* ]]; then
+	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -121,68 +128,29 @@ else
 	export TERM='xterm-256color'
 fi
 
-#vim may be different places on different machines (use nvim if available)
-export EDITOR=`which nvim 2>/dev/null || which vim 2> /dev/null || which vi`
-
-#include bash_functions if it exists
-if [ -f $HOME/.bash_functions ]; then
-	. $HOME/.bash_functions
-fi
-
-#invoke bash_local if it exists
-if [ -f $HOME/.bash_local ]; then
-	. $HOME/.bash_local
-fi
-
-[[ -s $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh ${IS_SLOW_DISK:+--no-use}
-
-#Invoke desk environment
-[[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
-
-#Add /usr/local/bin to PATH
-[[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
-
-#Add ~/bin and ~/bin_local to PATH
-if [[ "$PATH" != *$HOME/bin* ]]; then
-	PATH="$PATH:$HOME/bin"
-fi
-
-if [[ "$PATH" != *$HOME/bin_local* ]]; then
-	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
-fi
-
-if [[ "$MANPATH" != *$HOME/man_local* ]]; then
-	[[ -d $HOME/man_local ]] && MANPATH="$MANPATH:$HOME/man_local"
-fi
-
 #Add Git completion to bash
 [[ -s $HOME/bin/git-completion.bash ]] && source $HOME/bin/git-completion.bash
-
-#Setup Go if installed
-[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
-if [[ -d $HOME/code/go ]]; then
-	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
-	#Add local go path if not there already and handle empty GOPATH if needed
-	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
-fi
 
 #phantonjs bin path
 [[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
 
 #Sensible bash
-[[ -f $HOME/dotfiles/external/bash-sensible/sensible.bash ]] && source $HOME/dotfiles/external/bash-sensible/sensible.bash
+[[ -f $DOTFILES/external/bash-sensible/sensible.bash ]] && source $DOTFILES/external/bash-sensible/sensible.bash
 
-#Init Z
-[[ -f $HOME/dotfiles/external/z/z.sh ]] && source $HOME/dotfiles/external/z/z.sh
-
-#Rustup
-if [[ -f $HOME/.cargo/env ]]; then
-	source $HOME/.cargo/env
-	[[ $LD_LIBRARY_PATH == *"/usr/local/lib"* ]] || export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
-fi
-
+### Undo sensible things I don't like
 #Re-enable > clobber
 set +o noclobber
+
+#Case-sensitive glob and append cd automatically
+shopt -u nocaseglob autocd 2> /dev/null
+
+
+#Invoke desk environment
+[[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
+[[ -f $DOTFILES/external/desk/shell_plugins/bash/desk ]] && source $DOTFILES/external/desk/shell_plugins/bash/desk
+
+#Init Z
+[[ -f $DOTFILES/external/z/z.sh ]] && source $DOTFILES/external/z/z.sh
 
 #nice less options
 export PAGER=less
@@ -194,10 +162,82 @@ export PAGER=less
 # -X don't init term at begin and exit
 export LESS="-iRMSx4 -FX"
 
+#vim may be different places on different machines (use nvim if available)
+export EDITOR=$(which nvim 2>/dev/null || which vim 2> /dev/null || which vi)
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/dotfiles/bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f $DOTFILES/bash_aliases ]; then
+    source $DOTFILES/bash_aliases
+fi
+
+#include bash_functions if it exists
+if [ -f $DOTFILES/bash_functions ]; then
+	source $DOTFILES/bash_functions
+fi
+
+#invoke bash_local if it exists
+if [ -f $HOME/.bash_local ]; then
+	source $HOME/.bash_local
+fi
+
+if [[ "$MANPATH" != *$HOME/man_local* ]]; then
+	[[ -d $HOME/man_local ]] && MANPATH="$MANPATH:$HOME/man_local"
+fi
+
+#invoke platform specific files if they exist
+PLATFORM=$(uname | tr '[:upper:]' '[:lower:]')
+if [ -f $DOTFILES/bash_$PLATFORM ]; then
+	source $DOTFILES/bash_$PLATFORM
+fi
+
+#Setup nvm if installed, lazy-load if IS_SLOW_DISK (set in .bash_local)
+if [[ -s $HOME/.nvm/nvm.sh ]]; then
+	NVM_SCRIPT=$HOME/.nvm/nvm.sh
+	if [[ $IS_SLOW_DISK ]]; then
+		source $NVM_SCRIPT --no-use
+		NODE_CMDS="node npm"
+		for NODE_CMD in $NODE_CMDS; do
+			alias $NODE_CMD="unalias $NODE_CMDS && nvm use default && $NODE_CMD"
+		done
+		unset NODE_CMDS NODE_CMD
+	else
+		[[ -z $DESK_NAME ]] && source $NVM_SCRIPT
+	fi
+fi
+
+#Setup Go if installed
+[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
+if [[ -d $HOME/code/go ]]; then
+	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
+	#Add local go path if not there already and handle empty GOPATH if needed
+	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
+fi
+
+#Rustup
+if [[ -f $HOME/.cargo/env ]]; then
+	source $HOME/.cargo/env
+	[[ $LD_LIBRARY_PATH == *"/usr/local/lib"* ]] || export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
+fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
-
-HISTIGNORE="$HISTIGNORE:stophist"
+#Remove any duplicate entries from PATH
+if [ -n "$PATH" ]; then
+	old_PATH=$PATH:; PATH=
+	while [ -n "$old_PATH" ]; do
+		x=${old_PATH%%:*}   # the first remaining entry
+		case $PATH: in
+			*:"$x":*) ;;   # already there
+			*) PATH=$PATH:$x;;   # not there yet
+		esac
+		old_PATH=${old_PATH#*:}
+	done
+	PATH=${PATH#:}
+	unset old_PATH x
+fi

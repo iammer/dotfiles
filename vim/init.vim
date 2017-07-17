@@ -35,6 +35,9 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
+"use undofiles to persist undo
+set undofile
+
 set number
 set hidden
 set autoindent		" always set autoindenting on
@@ -54,7 +57,6 @@ set display+=lastline " Display as much of a line as possible even if the whole 
 
 set mouse= "Disable mouse (Neovim enables by default)
 
-
 "Use blowfish encryption if available
 if v:version > 702 && !has("nvim")
 	set cryptmethod=blowfish
@@ -68,7 +70,7 @@ let g:EasyMotion_mapping_w = '<leader>]'
 let g:EasyMotion_mapping_b = '<leader>['
 "
 ""Load pathogen
-:runtime bundle/vim-pathogen/autoload/pathogen.vim
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 "
@@ -79,6 +81,8 @@ nmap S <Plug>ReplaceWithRegisterOperator
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 let g:ctrlp_use_caching = 1
+let g:ctrlp_by_filename = 1
+let g:ctrlp_regexp = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_custom_ignore = {
@@ -87,6 +91,9 @@ let g:ctrlp_custom_ignore = {
  \ }
 let g:ctrlp_prompt_mappings = { 'PrtClearCache()': ['<F5>','<c-i>'] }
 let g:ctrlp_open_multiple_files = '1hjr'
+
+"Make ^Wf use CtrlP
+nmap <C-W>f <C-P><C-\>w
 
 set bg=dark
 "Colorschemes are in a plugin so must be loaded after pathogen
@@ -110,12 +117,12 @@ let g:signify_sign_change='~'
 
 "Use ag if available
 if executable('ag')
-	let g:ackprg = 'ag --nogroup --nocolor --column'
+	let g:ackprg = 'ag --vimgrep --smart-case'
 endif
-let g:ack_use_dispatch = 1
+"let g:ack_use_dispatch = 1
 
 "I don't like polyglots js indentation
-let g:polyglot_diabled = ['javascript']
+let g:polyglot_disabled = ['javascript']
 
 let g:javascript_conceal            = 1
 let g:javascript_conceal_function   = "ƒ"
@@ -139,12 +146,6 @@ inoremap jk <esc>
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
-
-"comma mappings for args
-nnoremap di, f,dT,
-nnoremap ci, f,cT,
-nnoremap da, f,ld2F,i,<ESC>l
-nnoremap ca, f,ld2F,i,<ESC>a
 
 "default to very magic
 nnoremap / /\v
@@ -174,8 +175,6 @@ nnoremap <leader>sm :so $MYVIMRC<CR>
 
 nnoremap <leader>h :noh<CR>
 
-nnoremap <leader>t :TagbarToggle<CR>
-
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
@@ -196,7 +195,7 @@ nnoremap <leader>c :call g:ToggleConceal()<CR>
 
 "sort block with gs
 nnoremap gS gs
-noremap gs :sort u<CR>
+nnoremap gs Vip:sort u<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -232,12 +231,14 @@ augroup vimrcEx
 	autocmd FileType gsp setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
+	autocmd FileType haskell setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 	autocmd FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 	autocmd FileType javascript ia f() function() {
 	autocmd FileType handlebars setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType handlebars.ember setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType spin setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
+	autocmd FileType haskell setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 	autocmd FileType groovy let @w = "yiWIprintln \"\": ${A}\"j"
 
 	" When editing a file, always jump to the last known cursor position.

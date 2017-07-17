@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git pull && git submodule init && git submodule update
+git pull && git submodule init && git submodule sync && git submodule update --init --recursive
 
 #remove ctrlspace since it was removed from git
 [[ -d vim/bundle/vim.ctrlspace ]] && rm -Rf vim/bundle/vim.ctrlspace
@@ -9,7 +9,7 @@ git pull && git submodule init && git submodule update
 
 #files that where added after install script was first created and may not be
 #present in newer versions
-files="desk ctags agignore inputrc bash_profile"
+files="desk ctags agignore inputrc bash_profile jline.rc"
 for file in $files; do
 	if [[ ! -L ~/.$file ]]; then
 		if [[ -f ~/.$file ]]; then
@@ -17,6 +17,14 @@ for file in $files; do
 			mv ~/.$file ~/dotfiles_old
 		fi
 		[[ -L ~/.$file ]] || ln -s ~/dotfiles/$file ~/.$file  
+	fi
+done
+
+#files that where symlinked at one point, but it didn't actually make sense
+files="bash_aliases bash_functions"
+for file in $files; do
+	if [[ -L ~/.$file ]]; then
+		rm ~/.$file
 	fi
 done
 
