@@ -151,6 +151,9 @@ if [[ "$PATH" != *$HOME/bin_local* ]]; then
 	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
 fi
 
+if [[ "$MANPATH" != *$HOME/man_local* ]]; then
+	[[ -d $HOME/man_local ]] && MANPATH="$MANPATH:$HOME/man_local"
+fi
 
 #Add Git completion to bash
 [[ -s $HOME/bin/git-completion.bash ]] && source $HOME/bin/git-completion.bash
