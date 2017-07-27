@@ -215,6 +215,7 @@ if [[ -d $HOME/code/go ]]; then
 	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
 	#Add local go path if not there already and handle empty GOPATH if needed
 	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
+	PATH="$PATH:$GOPATH/bin"
 fi
 
 #Rustup
