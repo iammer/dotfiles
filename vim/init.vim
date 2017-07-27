@@ -21,9 +21,7 @@ set nocompatible
 
 "for airline
 set laststatus=2
-if !exists('&encoding')
-	set encoding=utf-8
-endif
+set encoding=utf-8
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
