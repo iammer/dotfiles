@@ -4,6 +4,9 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
+#Load config for the thing that manages config (but where do I keep this?) :) 
+[[ -f ~/.config/dotfiles/config ]] && source ~/.config/dotfiles/config
+
 ########## Variables
 
 dir=~/dotfiles                    # dotfiles directory
@@ -14,7 +17,12 @@ mac_files="tmux.osx.conf"
 
 ##########
 
+#Allow not changing bash_profile (currently used for Termux)
+[[ -n "$KEEP_PROFILE" ]] && files=${files/bash_profile }
+
 [[ -x ~/.tmux.local.conf ]] && mv ~/.tmux.local.conf $olddir
+
+[[ -d ~/.local/share/nvim/undo ]] || mkdir -p ~/.local/share/nvim/undo
 
 case $OSTYPE in
 	darwin* )
