@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#Load config for the thing that manages config (but where do I keep this?) :) 
+[[ -f ~/.config/dotfiles/config ]] && source ~/.config/dotfiles/config
+
+#Update submodules
 git pull && git submodule init && git submodule sync && git submodule update --init --recursive
 
 #remove ctrlspace since it was removed from git
@@ -10,6 +14,10 @@ git pull && git submodule init && git submodule sync && git submodule update --i
 #files that where added after install script was first created and may not be
 #present in newer versions
 files="desk ctags agignore inputrc bash_profile jline.rc"
+
+#Allow not changing bash_profile (currently used for Termux)
+[[ -n "$KEEP_PROFILE" ]] && files=${files/bash_profile}
+
 for file in $files; do
 	if [[ ! -L ~/.$file ]]; then
 		if [[ -f ~/.$file ]]; then
