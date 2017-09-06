@@ -35,6 +35,7 @@ set incsearch		" do incremental searching
 
 "use undofiles to persist undo
 set undofile
+set undodir=~/.local/share/nvim/undo,/tmp,.
 
 set number
 set hidden

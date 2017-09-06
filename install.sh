@@ -22,6 +22,8 @@ mac_files="tmux.osx.conf"
 
 [[ -x ~/.tmux.local.conf ]] && mv ~/.tmux.local.conf $olddir
 
+[[ -d ~/.local/share/nvim/undo ]] || mkdir -p ~/.local/share/nvim/undo
+
 case $OSTYPE in
 	darwin* )
 		echo "Detected OSX: copying tmux.osx.conf to tmux.local.conf"

@@ -6,8 +6,11 @@
 #Update submodules
 git pull && git submodule init && git submodule sync && git submodule update --init --recursive
 
-#remove ctrlspace since it was removed from git
-[[ -d vim/bundle/vim.ctrlspace ]] && rm -Rf vim/bundle/vim.ctrlspace
+#cleanup removed submodules
+removed_bundles="vim.ctrlspace"
+for bundle in $removed_bundles; do
+	[[ -d vim/bundle/$bundle ]] && rm -Rf vim/bundle/$bundle
+done
 
 [[ -e ~/.gitignore_global ]] || ln -s ~/dotfiles/gitignore_global ~/.gitignore_global 
 
@@ -36,6 +39,7 @@ for file in $files; do
 	fi
 done
 
+#things to symlink in .config
 config_files="nvim"
 [[ -d ~/.config ]] || mkdir -p ~/.config
 for file in $config_files; do
@@ -44,3 +48,4 @@ done
 
 [[ -e ~/dotfiles/bin/git-completion.bash ]] || wget https://github.com/git/git/raw/master/contrib/completion/git-completion.bash -O ~/dotfiles/bin/git-completion.bash
 
+[[ -d ~/.local/share/nvim/undo ]] || mkdir -p ~/.local/share/nvim/undo
