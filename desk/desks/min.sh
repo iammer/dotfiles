@@ -4,7 +4,7 @@
 #
 
 . ~/.nvm/nvm.sh
-nvm use 4
+nvm use 6
 
 cd ~/code/min
 
