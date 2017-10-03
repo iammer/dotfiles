@@ -238,7 +238,9 @@ augroup vimrcEx
 	autocmd FileType hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType spin setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType haskell setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
+
 	autocmd FileType groovy let @w = "yiWIprintln \"\": ${A}\"j"
+	autocmd FileType javascript let @w = "y$iconsole.log(`A: ${pA}`);j^"
 
 	" When editing a file, always jump to the last known cursor position.
 	" Don't do it when the position is invalid or when inside an event handler
