@@ -228,6 +228,18 @@ fi
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+#Setup gcloud
+GCLOUD_PATH=''
+for path in /usr $HOME; do
+	if [[ -z "$GCLOUD_PATH" && -d "$path/google-cloud-sdk" ]]; then
+		GCLOUD_PATH="$path/google-cloud-sdk"
+	fi
+done
+
+for inc in completion.bash.inc path.bash.inc; do
+	[[ -f "$GCLOUD_PATH/$inc" ]] && source "$GCLOUD_PATH/$inc"
+done
+
 #Remove any duplicate entries from PATH
 if [ -n "$PATH" ]; then
 	old_PATH=$PATH:; PATH=
