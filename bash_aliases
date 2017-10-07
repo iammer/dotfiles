@@ -29,6 +29,7 @@ alias stophist='set +o history; O_PROMPT_COMMAND=$PROMPT_COMMAND; unset PROMPT_C
 alias starthist='set -o history; PROMPT_COMMAND=$O_PROMPT_COMMAND; unset O_PROMPT_COMMAND'
 
 alias gcm='gcloud compute'
+alias gcb='gcloud beta'
 alias dkr='docker'
 
 which nvim 2> /dev/null > /dev/null && alias vim="`which nvim`"
