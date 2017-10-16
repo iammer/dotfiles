@@ -32,6 +32,8 @@ alias gcm='gcloud compute'
 alias gcb='gcloud beta'
 alias dkr='docker'
 
+alias rebash='exec bash -l'
+
 which nvim 2> /dev/null > /dev/null && alias vim="`which nvim`"
 
 #in case I forget I am not in vim
