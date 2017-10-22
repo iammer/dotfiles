@@ -30,6 +30,7 @@ alias starthist='set -o history; PROMPT_COMMAND=$O_PROMPT_COMMAND; unset O_PROMP
 
 alias gcm='gcloud compute'
 alias gcb='gcloud beta'
+alias gcf='gcb functions'
 alias dkr='docker'
 
 which nvim 2> /dev/null > /dev/null && alias vim="`which nvim`"
@@ -43,5 +44,7 @@ alias jk='clear'
 
 #Headless chrome
 alias headless-'chrome=google-chrome --headless --disable-gpu --remote-debugging-port=9222'
+
+alias bashreload='exec -l bash'
 
 # vim:ft=sh
