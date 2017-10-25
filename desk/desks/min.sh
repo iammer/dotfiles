@@ -27,24 +27,24 @@ alias testdb="./grailsw test-app -plain-output"
 DEFAULT_GRAILS_OPS="-Djava.awt.headless=true"
 
 # Run grails with dev-servers deployment
-alias dsg="grails -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/dev-servers"
+alias dsg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/dev-servers"
 
 # Run grails with dev-sqlserver deployment
-alias dqg="grails -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/dev-sqlserver"
+alias dqg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/dev-sqlserver"
 
 # Run grails with dev deployment
-alias dg="grails -reloading $DEFAULT_GRAILS_OPS -Djava.awt.headless=true -Ddeployment=spida/dev"
+alias dg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Djava.awt.headless=true -Ddeployment=spida/dev"
 
-alias dsg="grails -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/studio"
+alias dsg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/studio"
 
 # Run grails with circleci deployment
-alias cg="grails $DEFAULT_GRAILS_OPS -Ddeployment=spida/circleci"
+alias cg="./grailsw $DEFAULT_GRAILS_OPS -Ddeployment=spida/circleci"
 
 # Run grails in debug mode with dev deployment
-alias ddg="grails -debug-forked -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/dev"
+alias ddg="./grailsw -debug-forked -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/dev"
 
 # Run grails in debug mode with circleci deployment
-alias dcg="grails -debug-forked -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/circleci"
+alias dcg="./grailsw -debug-forked -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/circleci"
 
 # Show the order in which grails tests were run
 grailsTestOrder() {
