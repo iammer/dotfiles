@@ -17,13 +17,14 @@ RUN apt-get update && \
 	adduser michael sudo && \
 	mkdir /var/run/sshd && \
 	chmod 0755 /var/run/sshd && \
-	mkdir /home/michael/.ssh
+	mkdir /home/michael/.ssh && \
+	mkdir /code
 
 ADD . /home/michael/dotfiles
 COPY docker/sudoers /etc/sudoers
 COPY authorized_keys /home/michael/.ssh/
 
-RUN chown -R michael:michael /home/michael && \
+RUN chown -R michael:michael /home/michael /code && \
 	su -c '\
 		cd $HOME && \
 		chmod 600 .ssh/authorized_keys && \
@@ -32,12 +33,12 @@ RUN chown -R michael:michael /home/michael && \
 			./install.sh  && \
 		popd && \
 		rm -R dotfiles_old && \
-		mkdir code \
+		ln -s /code /home/michael \
 	' michael
 
 EXPOSE 22 8080 8443
 ENTRYPOINT ["/usr/sbin/sshd","-D"]
-VOLUME ["/home/michael/code"]
+VOLUME ["/code"]
 
 
 
