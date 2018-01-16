@@ -18,4 +18,8 @@ comskip() {
 	git commit -m "[ci skip] $1" && git pull && git push
 }
 
+ggs() {
+	w3m "https://www.google.com/search?q=$*"
+}
+
 # vim:ft=sh
