@@ -1,0 +1,141 @@
+# A sample of ~/.w3m/keymap (default)
+#
+# Ctrl  : C-, ^
+# Escape: ESC-, M-, ^[
+# Space : SPC, ' '
+# Tab   : TAB, ^i, ^I
+# Delete: DEL, ^?
+# Up    : UP, ^[[A
+# Down  : DOWN, ^[[B
+# Right : RIGHT, ^[[C
+# Left  : LEFT, ^[[D
+
+keymap	SPC	NEXT_PAGE
+
+keymap	h	MOVE_LEFT
+keymap	j	MOVE_DOWN
+keymap	k	MOVE_UP
+keymap	l	MOVE_RIGHT
+keymap	g	BEGIN
+keymap	G	END
+keymap	J	UP
+keymap	K	DOWN
+
+keymap	C-[	PREV_LINK
+keymap	TAB	NEXT_LINK
+keymap	C-t	BACK
+keymap	C-m	GOTO_LINK
+keymap	C-]	GOTO_LINK
+keymap	C-p	LIST
+
+keymap	u	UNDO
+keymap	C-r	REDO
+
+keymap	C-b	SELECT_MENU
+keymap	L	LINK_MENU
+
+keymap	<	SHIFT_LEFT
+keymap	>	SHIFT_RIGHT
+keymap	.	RIGHT
+keymap	,	LEFT
+keymap	z	CENTER_V
+keymap	Z	CENTER_H
+
+keymap	/	SEARCH
+keymap	?	SEARCH_BACK
+keymap	N	SEARCH_PREV
+keymap	n	SEARCH_NEXT
+keymap	C-s	ISEARCH
+keymap	C-?	ISEARCH_BACK
+keymap	C-w	WRAP_TOGGLE
+
+keymap	s	MARK_URL
+keymap	m	MARK
+keymap	p	REG_MARK
+keymap	";"	NEXT_MARK
+keymap	"'"	PREV_MARK
+keymap	*	MARK_WORD
+
+keymap	O	GOTO
+
+keymap	r	GOTO_RELATIVE
+
+keymap	f	MOVE_LIST_MENU
+
+keymap	F	TAB_LINK
+keymap	{	PREV_TAB
+keymap	}	NEXT_TAB
+keymap	C-q	CLOSE_TAB
+
+keymap	\^	LINE_BEGIN
+keymap	$	LINE_END
+
+keymap	Q	EXIT
+keymap	R	RELOAD
+keymap	C-z	SUSPEND
+keymap	!	SHELL
+keymap	o	OPTIONS
+keymap	q	QUIT
+keymap	C-d	DOWNLOAD_LIST
+keymap	C-h	HISTORY
+keymap	C-k	COOKIE
+keymap	C-l	REDRAW
+keymap	H	HELP
+
+keymap	c	PEEK
+keymap	t	PEEK_LINK
+keymap	i	PEEK_IMG
+
+keymap	=	INFO
+keymap	C-g	LINE_INFO
+
+keymap	C-f	FRAME
+
+keymap	w	NEXT_WORD
+keymap	W	PREV_WORD
+
+keymap  D   SAVE_SCREEN
+keymap	a	SAVE_LINK
+keymap	A	SAVE
+
+keymap	:	COMMAND
+
+keymap	E	EDIT
+keymap	I	VIEW_IMAGE
+keymap	M	EXTERN
+keymap	v	VIEW
+
+#############################
+
+keymap	[	LINK_BEGIN
+keymap	]	LINK_END
+keymap	V	LOAD
+#keymap	r	VERSION
+
+keymap	#	PIPE_SHELL
+keymap	@	READ_SHELL
+keymap	T	NEW_TAB
+keymap	b	PREV_PAGE
+keymap	|	PIPE_BUF
+
+#----------------------------
+
+keymap	M-:	MARK_MID
+keymap	M-<	BEGIN
+keymap	M->	END
+keymap	M-I	SAVE_IMAGE
+keymap	M-M	EXTERN_LINK
+keymap	M-W	DICT_WORD_AT
+keymap	M-a	ADD_BOOKMARK
+keymap	M-b	BOOKMARK
+keymap	M-e	EDIT_SCREEN
+keymap	M-g	GOTO_LINE
+keymap	M-k	DEFINE_KEY
+keymap	M-l	LIST_MENU
+keymap	M-n	NEXT_MARK
+keymap	M-o	SET_OPTION
+keymap	M-p	PREV_MARK
+keymap	M-s	SAVE
+keymap	M-t	TAB_MENU
+keymap	M-u	GOTO_RELATIVE
+keymap	M-w	DICT_WORD

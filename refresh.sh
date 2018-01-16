@@ -46,6 +46,17 @@ for file in $config_files; do
 	[[ -L ~/.config/$file ]] || ln -s ~/dotfiles/$file ~/.config/$file
 done
 
+#things to symlink in .w3m
+w3m_files="config keymap"
+[[ -d ~/.w3m ]] || mkdir -p ~/.w3m
+[[ -d ~/dotfiles_old/w3m ]] || mkdir -p ~/dotfiles_old/w3m
+for file in $w3m_files; do
+	if [[ ! -L ~/.w3m/$file ]]; then
+		[[ -f ~/.w3m/$file ]] && mv ~/.w3m/$file ~/dotfiles_old/w3m
+		ln -s ~/dotfiles/w3m/$file ~/.w3m/$file
+	fi
+done
+
 [[ -e ~/dotfiles/bin/git-completion.bash ]] || wget https://github.com/git/git/raw/master/contrib/completion/git-completion.bash -O ~/dotfiles/bin/git-completion.bash
 
 [[ -d ~/.local/share/nvim/undo ]] || mkdir -p ~/.local/share/nvim/undo
