@@ -40,7 +40,7 @@ for file in $files; do
 done
 
 #things to symlink in .config
-config_files="nvim"
+config_files="nvim alacritty"
 [[ -d ~/.config ]] || mkdir -p ~/.config
 for file in $config_files; do
 	[[ -L ~/.config/$file ]] || ln -s ~/dotfiles/$file ~/.config/$file
