@@ -19,6 +19,11 @@ alias agless='ag --pager "less -R"'
 #Output header lines as well as body
 alias curld='curl -D-'
 
+alias w3m='w3m -B'
+ddg() {
+	w3m "https://www.duckduckgo.com?q=$*"
+}
+
 alias gitwip="git commit -a -m '[ci skip] WIP' && git pull && git push"
 alias gpo="git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
 
