@@ -65,7 +65,7 @@ keymap	f	MOVE_LIST_MENU
 keymap	F	TAB_LINK
 keymap	{	PREV_TAB
 keymap	}	NEXT_TAB
-keymap	C-q	CLOSE_TAB
+keymap  x	CLOSE_TAB
 
 keymap	\^	LINE_BEGIN
 keymap	$	LINE_END

@@ -18,6 +18,15 @@ comskip() {
 	git commit -m "[ci skip] $1" && git pull && git push
 }
 
+addIfNotContains() {
+	local VAR=$1
+	local TO_ADD=$2
+	eval "local VAL=\"\${$VAR}\""
+	if [[ $VAL != *$TO_ADD* ]]; then
+		eval "$VAR=\"$TO_ADD\${$VAR:+:\${$VAR}}\"; export $VAR"
+	fi
+}
+
 ggs() {
 	w3m "https://www.google.com/search?q=$*"
 }

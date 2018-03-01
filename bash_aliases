@@ -1,7 +1,7 @@
 #Tmux aliases
 which tmux-next 2> /dev/null > /dev/null && alias tmux=tmux-next
 which tmux25 2> /dev/null > /dev/null && alias tmux=tmux25
-alias tm='(tmux has && tmux attach) || tmux new'
+alias tm='(tmux has 2>/dev/null && tmux attach) || tmux new'
 alias tmMarkPane='echo $TMUX_PANE > ~/.markedPane'
 alias tmJoinPane='tmux join-pane -s `cat ~/.markedPane`'
 alias tmQuad='tmux split-window \; split-window -h \; select-pane -U \; split-window -h'
