@@ -220,6 +220,7 @@ augroup vimrcEx
 	autocmd BufNewFile,BufRead *.less set filetype=css
 	autocmd BufNewFile,BufRead *.md set filetype=markdown
 	autocmd BufNewFile,BufRead *.rs set filetype=rust
+	autocmd BufNewFile,BufRead *.fxml set filetype=xml
 
 	" Don't use a swap file when editing a file in dropbox
 	autocmd BufNewFile,BufRead */Dropbox/* setlocal noswf
