@@ -1,7 +1,7 @@
 #Tmux aliases
 which tmux-next 2> /dev/null > /dev/null && alias tmux=tmux-next
 which tmux25 2> /dev/null > /dev/null && alias tmux=tmux25
-alias tm='(tmux has && tmux attach) || tmux new'
+alias tm='(tmux has 2>/dev/null && tmux attach) || tmux new'
 alias tmMarkPane='echo $TMUX_PANE > ~/.markedPane'
 alias tmJoinPane='tmux join-pane -s `cat ~/.markedPane`'
 alias tmQuad='tmux split-window \; split-window -h \; select-pane -U \; split-window -h'
@@ -18,6 +18,11 @@ alias agless='ag --pager "less -R"'
 
 #Output header lines as well as body
 alias curld='curl -D-'
+
+alias w3m='w3m -B'
+ddg() {
+	w3m "https://www.duckduckgo.com?q=$*"
+}
 
 alias gitwip="git commit -a -m '[ci skip] WIP' && git pull && git push"
 alias gpo="git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
