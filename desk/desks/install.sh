@@ -11,10 +11,10 @@ alias brewBase='brew install ack bash coreutils entr findutils gawk git git-lfs 
 # Necessary Linux things (uses sudo)
 debBase() {
 	sudo apt-get update
-	sudo apt-get -y install git tmux curl build-essential vim silversearcher-ag entr jq nmap parallel xz-utils zbackup openssl wget
+	sudo apt-get -y install git tmux curl build-essential vim silversearcher-ag entr jq nmap parallel xz-utils zbackup openssl wget tree w3m
 }
 
-#Neovim (uses sudo)
+# Neovim (uses sudo)
 neovim() {
 	sudo apt-get -y install software-properties-common
 	sudo add-apt-repository ppa:neovim-ppa/stable
