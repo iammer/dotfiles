@@ -220,6 +220,7 @@ augroup vimrcEx
 	autocmd BufNewFile,BufRead *.less set filetype=css
 	autocmd BufNewFile,BufRead *.md set filetype=markdown
 	autocmd BufNewFile,BufRead *.rs set filetype=rust
+	autocmd BufNewFile,BufRead *.fxml set filetype=xml
 
 	" Don't use a swap file when editing a file in dropbox
 	autocmd BufNewFile,BufRead */Dropbox/* setlocal noswf
@@ -237,6 +238,7 @@ augroup vimrcEx
 	autocmd FileType handlebars.ember setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType spin setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
+	autocmd FileType markdown setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType haskell setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 
 	autocmd FileType groovy let @w = "^yiWIprintln \"\": ${A}\"j^"
@@ -246,6 +248,7 @@ augroup vimrcEx
 	" Don't do it when the position is invalid or when inside an event handler
 	" (happens when dropping a file on gvim).
 	" Also don't do it when the mark is in the first line, that is the default
+
 	" position when opening a file.
 	autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") |

@@ -1,13 +1,13 @@
 #Tmux aliases
 which tmux-next 2> /dev/null > /dev/null && alias tmux=tmux-next
 which tmux25 2> /dev/null > /dev/null && alias tmux=tmux25
-alias tm='tmux attach || tmux new'
+alias tm='(tmux has 2>/dev/null && tmux attach) || tmux new'
 alias tmMarkPane='echo $TMUX_PANE > ~/.markedPane'
 alias tmJoinPane='tmux join-pane -s `cat ~/.markedPane`'
 alias tmQuad='tmux split-window \; split-window -h \; select-pane -U \; split-window -h'
 alias tmTri='tmux split-window  -h -p 33 \; split-window \; select-pane -L'
 alias tmSwapA='tmux display-message -p "#{pane_id}" > ~/.swapPane'
-alias tmAvailKeys='echo {a..z} {A..Z} | tr -d $(tmux lsk | sed "s/bind-key \(-r\)\{0,1\} *\([^ ]*\) .*/\2/" | sed -n "/^[a-zA-Z]$/p" | tr -d [:space:]) | tr -d \ '
+alias tmAvailKeys='echo {a..z} {A..Z} | tr -d $(tmux lsk -T prefix | sed "s/bind-key \(-r\)\{0,1\} *-T \w* *\([^ ]*\) .*/\2/" | sed -n "/^[a-zA-Z]$/p" | tr -d [:space:]) | tr -d \ '
 alias d.='desk .'
 alias datestamp='date +%Y%m%d'
 alias timestamp='date +%Y%m%d%H%M%S'
@@ -18,6 +18,11 @@ alias agless='ag --pager "less -R"'
 
 #Output header lines as well as body
 alias curld='curl -D-'
+
+alias w3m='w3m -B'
+ddg() {
+	w3m "https://www.duckduckgo.com?q=$*"
+}
 
 alias gitwip="git commit -a -m '[ci skip] WIP' && git pull && git push"
 alias gpo="git push -u origin \$(git rev-parse --abbrev-ref HEAD)"

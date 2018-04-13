@@ -13,6 +13,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files="bashrc vimrc vim tmux.conf irssi gitignore_global desk agignore ctags inputrc bash_profile jline.rc"    # list of files/folders to symlink in homedir
 config_files="nvim"   #list of files/folders to symlink in .config
+w3m_files="keymap config"
 mac_files="tmux.osx.conf"
 
 ##########
@@ -60,6 +61,15 @@ for file in $config_files; do
 	mv ~/.config/$file ~/dotfiles_old/config/$file
 	echo "Creating symlink to ~/.config/$file"
 	ln -s $dir/$file ~/.config/$file
+done
+
+[[ -d ~/.w3m ]] || mkdir ~/.w3m
+
+for file in $w3m_files; do
+	echo "Moving existing w3m from ~/.w3m/$file to $olddir/w3m/$file"
+	mv ~/.w3m/$file ~/dotfiles_old/w3m/$file
+	echo "Creating symlink to ~/.w3m/$file"
+	ln -s $dir/w3m/$file ~/.w3m/$file
 done
 
 echo "Moving old .gitconfig"
