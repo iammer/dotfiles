@@ -19,7 +19,9 @@ RUN apt-get update && \
 	chmod 0755 /var/run/sshd && \
 	mkdir /home/michael/.ssh &&\
 	wget https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_amd64.deb &&\
-	dpkg -i dumb-init_*.deb
+	dpkg -i dumb-init_*.deb &&\
+	rm /etc/update-motd.d/60-unminimize
+                  
 
 ADD . /home/michael/dotfiles
 COPY docker/sudoers /etc/sudoers
