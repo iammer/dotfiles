@@ -240,6 +240,9 @@ for inc in completion.bash.inc path.bash.inc; do
 	[[ -f "$GCLOUD_PATH/$inc" ]] && source "$GCLOUD_PATH/$inc"
 done
 
+#Remove parallel nag
+[[ -f "$HOME/.parallel/will-cite" ]] || mkdir $HOME/.parallel 2> /dev/null ; touch $HOME/.parallel/will-cite
+
 #Remove any duplicate entries from PATH
 if [ -n "$PATH" ]; then
 	old_PATH=$PATH:; PATH=
