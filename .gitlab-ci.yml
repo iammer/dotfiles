@@ -3,7 +3,7 @@
 image: docker:latest
 
 variables:
-  - REPO_IMAGE: $CI_REGISTRY_IMAGE/dev-base
+  REPO_IMAGE: $CI_REGISTRY_IMAGE/dev-base
 
 services:
   - docker:dind
