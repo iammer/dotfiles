@@ -2,6 +2,9 @@
 # Official docker image.
 image: docker:latest
 
+variables:
+  - REPO_IMAGE: $CI_REGISTRY_IMAGE/dev-base
+
 services:
   - docker:dind
 
@@ -11,15 +14,15 @@ before_script:
 build-master:
   stage: build
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
+    - docker build --pull -t "$REPO_IMAGE" .
+    - docker push "$REPO_IMAGE"
   only:
     - master
 
 build:
   stage: build
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - docker build --pull -t "$REPO_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker push "$REPO_IMAGE:$CI_COMMIT_REF_SLUG"
   except:
     - master
