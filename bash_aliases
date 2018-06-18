@@ -54,4 +54,5 @@ alias headless-'chrome=google-chrome --headless --disable-gpu --remote-debugging
 
 alias bashreload='exec -l bash'
 
+alias pl='parallel'
 # vim:ft=sh

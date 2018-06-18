@@ -17,7 +17,11 @@ RUN apt-get update && \
 	adduser michael sudo && \
 	mkdir /var/run/sshd && \
 	chmod 0755 /var/run/sshd && \
-	mkdir /home/michael/.ssh
+	mkdir /home/michael/.ssh &&\
+	wget https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_amd64.deb &&\
+	dpkg -i dumb-init_*.deb &&\
+	rm /etc/update-motd.d/60-unminimize
+                  
 
 ADD . /home/michael/dotfiles
 COPY docker/sudoers /etc/sudoers
@@ -36,7 +40,8 @@ RUN chown -R michael:michael /home/michael && \
 	' michael
 
 EXPOSE 22 8080 8443
-ENTRYPOINT ["/usr/sbin/sshd","-D"]
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["/usr/sbin/sshd","-D"]
 VOLUME ["/home/michael/code"]
 
 
