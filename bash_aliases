@@ -20,7 +20,8 @@ alias agless='ag --pager "less -R"'
 alias curld='curl -D-'
 
 alias w3m='w3m -B'
-ddg() {
+
+function ddg {
 	w3m "https://www.duckduckgo.com?q=$*"
 }
 
