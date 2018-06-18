@@ -47,6 +47,10 @@ set splitright
 
 set cursorline
 
+if $IS_SLOW_DISK == 1
+	set lazyredraw
+endif
+
 set autoread "automatically reload externally modified files if they have not been modified locally
 
 " Use the same symbols as TextMate for tabstops and EOLs
