@@ -25,6 +25,38 @@ neovim() {
 # Install NVM
 alias nvm='curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash'
 
+# Install node (uses sudo)
+node() {
+	UNAME_MACH=$(uname -m)
+	NODE_MACH='x64'
+	case $UNAME_MACH in
+		x86_64)
+			NODE_MACH='x64'
+			;;
+		aarch64)
+			NODE_MACH='arm64'
+			;;
+		i686)
+			NODE_MACH='x86'
+			;;
+		*)
+			NODE_MACH=$UNAME_MACH
+			;;
+	esac
+
+	echo "Looking for machine type: $NODE_MACH"
+	NODE_URL="https://nodejs.org/dist/latest"
+	echo "Getting latest binaries"
+	NODE_DIST=$(curl -s "$NODE_URL/SHASUMS256.txt" | awk "/linux-$NODE_MACH.tar.xz/ { print \$2 }")
+	echo "Downloading $NODE_URL/$NODE_DIST"
+	curl -o /tmp/node.tar.xz "$NODE_URL/$NODE_DIST"
+	echo "Extracting"
+	pushd /opt
+		sudo tar xfv /tmp/node.tar.xz && rm /tmp/node.tar.xz
+		sudo ln -sf /opt/${NODE_DIST%.tar.xz} /opt/node
+	popd	
+}
+
 # Install Rust
 rust() {
 	curl https://sh.rustup.rs -sSf -o /tmp/rust-init &&
