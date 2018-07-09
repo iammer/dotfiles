@@ -209,6 +209,10 @@ if [[ -s $HOME/.nvm/nvm.sh ]]; then
 	else
 		[[ -z $DESK_NAME ]] && source $NVM_SCRIPT
 	fi
+else #Use node installed in /opt/node if exists
+	if [[ -d /opt/node/bin ]]; then
+		PATH="$PATH:/opt/node/bin"
+	fi
 fi
 
 #Setup Go if installed
