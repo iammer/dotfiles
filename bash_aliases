@@ -22,7 +22,7 @@ alias curld='curl -D-'
 alias w3m='w3m -B'
 
 function ddg {
-	w3m "https://www.duckduckgo.com?q=$*"
+	w3m "https://duckduckgo.com/lite/?q=$*"
 }
 
 alias gitwip="git commit -a -m '[ci skip] WIP' && git pull && git push"
