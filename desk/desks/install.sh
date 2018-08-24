@@ -101,3 +101,8 @@ docker() {
 	sudo apt-get install -y docker-ce
 	sudo adduser $(whoami) docker
 }
+
+gcloud() {
+	curl https://sdk.cloud.google.com/ | bash
+}
+	
