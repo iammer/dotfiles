@@ -49,9 +49,9 @@ done
 #things to symlink in .w3m
 w3m_files="config keymap"
 [[ -d ~/.w3m ]] || mkdir -p ~/.w3m
-[[ -d ~/dotfiles_old/w3m ]] || mkdir -p ~/dotfiles_old/w3m
 for file in $w3m_files; do
 	if [[ ! -L ~/.w3m/$file ]]; then
+		[[ -d ~/dotfiles_old/w3m ]] || mkdir -p ~/dotfiles_old/w3m
 		[[ -f ~/.w3m/$file ]] && mv ~/.w3m/$file ~/dotfiles_old/w3m
 		ln -s ~/dotfiles/w3m/$file ~/.w3m/$file
 	fi
