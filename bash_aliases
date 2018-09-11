@@ -29,7 +29,7 @@ alias gitwip="git commit -a -m '[ci skip] WIP' && git pull && git push"
 alias gpo="git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
 
 alias randpass="head -c 12 < /dev/urandom | base64"
-alias randpass2="echo $(randpass) $(randpass) | tr -d '+/ '"
+alias randpass2='echo $(randpass) $(randpass) | tr -d "+/ "'
 
 #Stop history logging. Use if you need to send a password as an arg
 alias stophist='set +o history; O_PROMPT_COMMAND=$PROMPT_COMMAND; unset PROMPT_COMMAND'
