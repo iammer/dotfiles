@@ -248,7 +248,7 @@ for inc in completion.bash.inc path.bash.inc; do
 done
 
 #Remove parallel nag
-[[ -f "$HOME/.parallel/will-cite" ]] || mkdir $HOME/.parallel 2> /dev/null ; touch $HOME/.parallel/will-cite
+[[ -f "$HOME/.parallel/will-cite" ]] || (mkdir $HOME/.parallel 2> /dev/null ; touch $HOME/.parallel/will-cite)
 
 #Remove any duplicate entries from PATH
 if [ -n "$PATH" ]; then
