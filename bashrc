@@ -250,6 +250,10 @@ done
 #Remove parallel nag
 [[ -f "$HOME/.parallel/will-cite" ]] || (mkdir $HOME/.parallel 2> /dev/null ; touch $HOME/.parallel/will-cite)
 
+#Nim
+[[ -d "/opt/nim/bin" ]] && PATH="$PATH:/opt/nim/bin"
+[[ -d "$HOME/.nimble/bin" ]] && PATH="$PATH:$HOME/.nimble/bin"
+
 #Remove any duplicate entries from PATH
 if [ -n "$PATH" ]; then
 	old_PATH=$PATH:; PATH=
