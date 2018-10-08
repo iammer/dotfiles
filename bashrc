@@ -102,6 +102,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #Add /usr/local/bin to PATH
 [[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
 
+#Add snap path to PATH
+[[ -d /snap/bin ]] && PATH="/snap/bin:$PATH"
+
 #Add ~/bin and ~/bin_local to PATH
 if [[ "$PATH" != *$HOME/bin* ]]; then
 	PATH="$PATH:$HOME/bin"
