@@ -219,9 +219,10 @@ else #Use node installed in /opt/node if exists
 fi
 
 #Setup Go if installed
-[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
+for path in /usr/local/go/bin /opt/go/bin $HOME/code/go/bin; do
+	[[ -d $path ]] && PATH="$PATH:$path"
+done
 if [[ -d $HOME/code/go ]]; then
-	[[ -d $HOME/code/go/bin ]] && PATH="$PATH:$HOME/code/go/bin"
 	#Add local go path if not there already and handle empty GOPATH if needed
 	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
 	PATH="$PATH:$GOPATH/bin"
@@ -239,7 +240,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 #Setup gcloud
 GCLOUD_PATH=''
-for path in /usr $HOME; do
+for path in /usr $HOME /opt; do
 	if [[ -z "$GCLOUD_PATH" && -d "$path/google-cloud-sdk" ]]; then
 		GCLOUD_PATH="$path/google-cloud-sdk"
 	fi
@@ -250,7 +251,11 @@ for inc in completion.bash.inc path.bash.inc; do
 done
 
 #Remove parallel nag
-[[ -f "$HOME/.parallel/will-cite" ]] || mkdir $HOME/.parallel 2> /dev/null ; touch $HOME/.parallel/will-cite
+[[ -f "$HOME/.parallel/will-cite" ]] || (mkdir $HOME/.parallel 2> /dev/null ; touch $HOME/.parallel/will-cite)
+
+#Nim
+[[ -d "/opt/nim/bin" ]] && PATH="$PATH:/opt/nim/bin"
+[[ -d "$HOME/.nimble/bin" ]] && PATH="$PATH:$HOME/.nimble/bin"
 
 #Remove any duplicate entries from PATH
 if [ -n "$PATH" ]; then
