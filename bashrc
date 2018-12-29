@@ -236,7 +236,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 #Setup gcloud
 GCLOUD_PATH=''
-for path in /usr $HOME /opt; do
+for path in /usr $HOME $HOME/sdk /opt; do
 	if [[ -z "$GCLOUD_PATH" && -d "$path/google-cloud-sdk" ]]; then
 		GCLOUD_PATH="$path/google-cloud-sdk"
 	fi
