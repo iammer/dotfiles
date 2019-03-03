@@ -102,6 +102,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #Add /usr/local/bin to PATH
 [[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
 
+#Add snap path to PATH
+[[ -d /snap/bin ]] && PATH="/snap/bin:$PATH"
+
 #Add ~/bin and ~/bin_local to PATH
 if [[ "$PATH" != *$HOME/bin* ]]; then
 	PATH="$PATH:$HOME/bin"
@@ -122,12 +125,8 @@ if ! shopt -oq posix; then
 	fi
 fi
 
-
 if [ -n "$TMUX" ]; then
-	unset GVM_INIT
 	export TERM='screen-256color'
-else 
-	export TERM='xterm-256color'
 fi
 
 #Add Git completion to bash
@@ -237,7 +236,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 #Setup gcloud
 GCLOUD_PATH=''
-for path in /usr $HOME /opt; do
+for path in /usr $HOME $HOME/sdk /opt; do
 	if [[ -z "$GCLOUD_PATH" && -d "$path/google-cloud-sdk" ]]; then
 		GCLOUD_PATH="$path/google-cloud-sdk"
 	fi
