@@ -46,10 +46,7 @@ set noequalalways
 set splitright
 
 set cursorline
-
-if $IS_SLOW_DISK == 1
-	set lazyredraw
-endif
+set lazyredraw
 
 set autoread "automatically reload externally modified files if they have not been modified locally
 
@@ -244,6 +241,8 @@ augroup vimrcEx
 	autocmd FileType spin setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType markdown setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType haskell setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
+
+	autocmd FileType nim setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 
 	autocmd FileType groovy let @w = "^yiWIprintln \"\": ${A}\"j^"
 	autocmd FileType javascript let @w = "^y$iconsole.log(`A: ${pA}`);j^"

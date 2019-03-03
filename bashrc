@@ -254,6 +254,9 @@ done
 [[ -d "/opt/nim/bin" ]] && PATH="$PATH:/opt/nim/bin"
 [[ -d "$HOME/.nimble/bin" ]] && PATH="$PATH:$HOME/.nimble/bin"
 
+#Julia
+[[ -d "/opt/julia/bin" ]] && PATH="$PATH:/opt/julia/bin"
+
 #Remove any duplicate entries from PATH
 if [ -n "$PATH" ]; then
 	old_PATH=$PATH:; PATH=
