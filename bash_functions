@@ -11,7 +11,7 @@ tmSwapB() {
 
 datedir() {
 	datedir=`datestamp`
-	mkdir $datedir && cd $datedir
+	mkdir $datedir; cd $datedir
 }
 
 comskip() {
