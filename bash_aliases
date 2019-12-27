@@ -12,6 +12,7 @@ alias d.='desk .'
 alias datestamp='date +%Y%m%d'
 alias timestamp='date +%Y%m%d%H%M%S'
 alias unixstamp='date +%s'
+alias estdate="TZ='America/New_York' date"
 
 alias lessb='LESS=${LESS/S/} less'
 alias agless='ag --pager "less -R"'
