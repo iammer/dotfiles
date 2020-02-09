@@ -105,14 +105,12 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #Add snap path to PATH
 [[ -d /snap/bin ]] && PATH="/snap/bin:$PATH"
 
-#Add ~/bin and ~/bin_local to PATH
-if [[ "$PATH" != *$HOME/bin* ]]; then
-	PATH="$PATH:$HOME/bin"
-fi
-
-if [[ "$PATH" != *$HOME/bin_local* ]]; then
-	[[ -d $HOME/bin_local ]] && PATH="$PATH:$HOME/bin_local"
-fi
+#Add ~/bin, .local/bin, and ~/bin_local to PATH
+for path in bin bin_local .local/bin; do
+	if [[ "$PATH" != *$HOME/$path* ]]; then
+		PATH="$PATH:$HOME/$path"
+	fi
+done
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -270,3 +268,4 @@ if [ -n "$PATH" ]; then
 	PATH=${PATH#:}
 	unset old_PATH x
 fi
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
