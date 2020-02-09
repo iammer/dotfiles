@@ -58,4 +58,6 @@ alias headless-'chrome=google-chrome --headless --disable-gpu --remote-debugging
 alias bashreload='exec -l bash'
 
 alias pl='parallel'
+
+alias caps="/usr/bin/setxkbmap -option 'caps:swapescape'"
 # vim:ft=sh
