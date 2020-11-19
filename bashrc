@@ -269,3 +269,9 @@ if [ -n "$PATH" ]; then
 	unset old_PATH x
 fi
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#R
+if which R > /dev/null; then
+	[[ -d $HOME/.local/lib/R ]] || mkdir -p $HOME/.local/lib/R
+	export R_LIBS_USER=$HOME/.local/lib/R
+fi
