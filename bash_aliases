@@ -1,7 +1,7 @@
 #Tmux aliases
 which tmux-next 2> /dev/null > /dev/null && alias tmux=tmux-next
 which tmux25 2> /dev/null > /dev/null && alias tmux=tmux25
-alias tm='(tmux has 2>/dev/null && tmux attach) || tmux new'
+alias tm='(tmux has 2>/dev/null && tmux attach -c $HOME) || tmux new -c $HOME'
 alias tmMarkPane='echo $TMUX_PANE > ~/.markedPane'
 alias tmJoinPane='tmux join-pane -s `cat ~/.markedPane`'
 alias tmQuad='tmux split-window \; split-window -h \; select-pane -U \; split-window -h'
@@ -13,6 +13,8 @@ alias datestamp='date +%Y%m%d'
 alias timestamp='date +%Y%m%d%H%M%S'
 alias unixstamp='date +%s'
 alias estdate="TZ='America/New_York' date"
+
+alias scrs='maim -s > ~/screenshots/screenshot-$(timestamp).png'
 
 alias lessb='LESS=${LESS/S/} less'
 alias agless='ag --pager "less -R"'

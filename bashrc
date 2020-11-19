@@ -107,10 +107,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 #Add ~/bin, .local/bin, and ~/bin_local to PATH
 for path in bin bin_local .local/bin; do
-	if [[ "$PATH" != *$HOME/$path* ]]; then
+	if [[ -d "$HOME/$path" ]] && [[ "$PATH" != *$HOME/$path* ]]; then
 		PATH="$PATH:$HOME/$path"
 	fi
 done
+
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -183,6 +184,11 @@ if [ -f $HOME/.bash_local ]; then
 	source $HOME/.bash_local
 fi
 
+#invoke .local/bashrc if it exists
+if [ -f $HOME/.local/bashrc ]; then
+	source $HOME/.local/bashrc
+fi
+
 if [[ "$MANPATH" != *$HOME/man_local* ]]; then
 	[[ -d $HOME/man_local ]] && MANPATH="$MANPATH:$HOME/man_local"
 fi
@@ -191,6 +197,12 @@ fi
 PLATFORM=$(uname | tr '[:upper:]' '[:lower:]')
 if [ -f $DOTFILES/bash_$PLATFORM ]; then
 	source $DOTFILES/bash_$PLATFORM
+fi
+
+#Setup deno if installed
+if [[ -d $HOME/.deno ]]; then
+	export DENO_INSTALL="$HOME/.deno"
+	export PATH="$DENO_INSTALL/bin:$PATH"
 fi
 
 #Setup nvm if installed, lazy-load if IS_SLOW_DISK (set in .bash_local)
@@ -231,6 +243,11 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+#Cabal (ghc package manager)
+if [[ -d $HOME/.cabal/bin ]]; then
+	PATH="$PATH:$HOME/.cabal/bin"
+fi
 
 #Setup gcloud
 GCLOUD_PATH=''
