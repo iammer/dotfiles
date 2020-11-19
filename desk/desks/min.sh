@@ -8,6 +8,8 @@ nvm use 6
 
 cd ~/code/min
 
+export JAVA_HOME=/opt/java7
+
 #Cleans and compiles interchange and projectmanager (solves issues that occur when switch from ember non-ember min)
 alias supaclean="pushd interchange && grails clean && grails compile && popd && pushd projectmanager && grails clean && grails compile && popd"
 
@@ -24,7 +26,7 @@ alias testci="dropci && redis-cli flushall && cg test-app -plain-output"
 # Test calcDB
 alias testdb="./grailsw test-app -plain-output"
 
-DEFAULT_GRAILS_OPS="-Djava.awt.headless=true"
+DEFAULT_GRAILS_OPS="-Djava.awt.headless=true -Xmx4096M"
 
 # Run grails with dev-servers deployment
 alias dsg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/dev-servers"
@@ -33,7 +35,7 @@ alias dsg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/dev-serve
 alias dqg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/dev-sqlserver"
 
 # Run grails with dev deployment
-alias dg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Djava.awt.headless=true -Ddeployment=spida/dev"
+alias dg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Djava.awt.headless=true -Ddeployment=dev"
 
 alias dsg="./grailsw -reloading $DEFAULT_GRAILS_OPS -Ddeployment=spida/studio"
 
