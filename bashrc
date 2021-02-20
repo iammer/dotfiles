@@ -292,3 +292,8 @@ if which R > /dev/null; then
 	[[ -d $HOME/.local/lib/R ]] || mkdir -p $HOME/.local/lib/R
 	export R_LIBS_USER=$HOME/.local/lib/R
 fi
+
+#Pico
+if [[ -d $HOME/code/pico/pico-sdk ]]; then
+	export PICO_SDK_PATH=$HOME/code/pico/pico-sdk
+fi
