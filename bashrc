@@ -297,3 +297,11 @@ fi
 if [[ -d $HOME/code/pico/pico-sdk ]]; then
 	export PICO_SDK_PATH=$HOME/code/pico/pico-sdk
 fi
+
+#rbenv
+if [[ -d $HOME/.rbenv/bin ]]; then
+	PATH="$HOME/.rbenv/bin:$PATH"
+	if which rbenv > /dev/null; then
+		eval "$(rbenv init -)"
+	fi
+fi
