@@ -232,6 +232,7 @@ augroup vimrcEx
 	autocmd FileType gsp setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
+	autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType haskell setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 	autocmd FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 	autocmd FileType javascript ia f() function() {
