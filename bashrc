@@ -271,20 +271,6 @@ done
 #Julia
 [[ -d "/opt/julia/bin" ]] && PATH="$PATH:/opt/julia/bin"
 
-#Remove any duplicate entries from PATH
-if [ -n "$PATH" ]; then
-	old_PATH=$PATH:; PATH=
-	while [ -n "$old_PATH" ]; do
-		x=${old_PATH%%:*}   # the first remaining entry
-		case $PATH: in
-			*:"$x":*) ;;   # already there
-			*) PATH=$PATH:$x;;   # not there yet
-		esac
-		old_PATH=${old_PATH#*:}
-	done
-	PATH=${PATH#:}
-	unset old_PATH x
-fi
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #R
@@ -305,3 +291,43 @@ if [[ -d $HOME/.rbenv/bin ]]; then
 		eval "$(rbenv init -)"
 	fi
 fi
+
+#pyenv
+if [[ -d $HOME/.pyenv/bin ]]; then
+	PATH="$HOME/.pyenv/bin:$PATH"
+	export PYENV_ROOT="$HOME/.pyenv"
+	if which pyenv > /dev/null; then
+		eval "$(pyenv init --path)"
+	fi
+fi
+
+#Poetry
+if [[ -f $HOME/.poetry/env ]]; then
+	source $HOME/.poetry/env
+fi
+
+#tfenv
+if [[ -d $HOME/.local/tfenv/bin ]]; then
+	PATH="$HOME/.local/tfenv/bin:$PATH"
+fi
+
+#tfenv
+if [[ -d $HOME/.local/tgenv/bin ]]; then
+	PATH="$HOME/.local/tgenv/bin:$PATH"
+fi
+
+#Remove any duplicate entries from PATH
+if [ -n "$PATH" ]; then
+	old_PATH=$PATH:; PATH=
+	while [ -n "$old_PATH" ]; do
+		x=${old_PATH%%:*}   # the first remaining entry
+		case $PATH: in
+			*:"$x":*) ;;   # already there
+			*) PATH=$PATH:$x;;   # not there yet
+		esac
+		old_PATH=${old_PATH#*:}
+	done
+	PATH=${PATH#:}
+	unset old_PATH x
+fi
+
