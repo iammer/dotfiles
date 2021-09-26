@@ -86,3 +86,6 @@
 [submodule "external/bash-snippets"]
 	path = external/bash-snippets
 	url = https://github.com/alexanderepstein/Bash-Snippets.git
+[submodule "vim/bundle/vim-rails"]
+	path = vim/bundle/vim-rails
+	url = https://github.com/tpope/vim-rails.git
