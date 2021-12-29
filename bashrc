@@ -308,12 +308,12 @@ fi
 
 #tfenv
 if [[ -d $HOME/.local/tfenv/bin ]]; then
-	PATH="$HOME/.local/tfenv/bin:$PATH"
+	PATH="$PATH:$HOME/.local/tfenv/bin"
 fi
 
-#tfenv
+#tgenv
 if [[ -d $HOME/.local/tgenv/bin ]]; then
-	PATH="$HOME/.local/tgenv/bin:$PATH"
+	PATH="$PATH:$HOME/.local/tgenv/bin"
 fi
 
 #Remove any duplicate entries from PATH
