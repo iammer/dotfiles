@@ -316,6 +316,11 @@ if [[ -d $HOME/.local/tgenv/bin ]]; then
 	PATH="$PATH:$HOME/.local/tgenv/bin"
 fi
 
+#Heroku
+if [[ -d /opt/heroku/bin ]]; then
+	PATH="$PATH:/opt/heroku/bin"
+fi
+
 #Remove any duplicate entries from PATH
 if [ -n "$PATH" ]; then
 	old_PATH=$PATH:; PATH=
