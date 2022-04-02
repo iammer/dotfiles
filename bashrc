@@ -287,6 +287,7 @@ done <<-END_PATHS
 	/usr/local/go/bin
 	/opt/go/bin
 	$HOME/code/go/bin
+	$HOME/.yarn/bin
 END_PATHS
 
 #Remove any duplicate entries from PATH
