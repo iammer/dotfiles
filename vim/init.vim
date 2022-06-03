@@ -341,4 +341,6 @@ if !exists(":DiffOrig")
 		\ | wincmd p | diffthis
 endif
 
-runtime coc.vim
+if exists(":CocInstall")
+	runtime coc.vim
+endif
