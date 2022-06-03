@@ -249,14 +249,6 @@ if [[ -d $HOME/code/pico/pico-sdk ]]; then
 	export PICO_SDK_PATH=$HOME/code/pico/pico-sdk
 fi
 
-#rbenv
-if [[ -d $HOME/.rbenv/bin ]]; then
-	add_to_path "$HOME/.rbenv/bin"
-	if which rbenv > /dev/null; then
-		eval "$(rbenv init -)"
-	fi
-fi
-
 #pyenv
 if [[ -d $HOME/.pyenv/bin ]]; then
 	add_to_path "$HOME/.pyenv/bin"
@@ -289,6 +281,14 @@ done <<-END_PATHS
 	$HOME/code/go/bin
 	$HOME/.yarn/bin
 END_PATHS
+
+#rbenv
+if [[ -d $HOME/.rbenv/bin ]]; then
+	add_to_path "$HOME/.rbenv/bin" start
+	if which rbenv > /dev/null; then
+		eval "$(rbenv init -)"
+	fi
+fi
 
 #Remove any duplicate entries from PATH
 if [ -n "$PATH" ]; then
