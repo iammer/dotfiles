@@ -44,6 +44,7 @@ Plug 'mhinz/vim-signify'
 Plug 'sheerun/vim-polyglot'
 Plug 'pangloss/vim-javascript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rust-lang/rust.vim'
 
 Plug 'iammer/spin.vim'
 Plug 'iammer/ReplaceWithRegister'
