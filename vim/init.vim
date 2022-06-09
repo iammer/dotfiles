@@ -19,17 +19,49 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-"for airline
-set laststatus=2
-set encoding=utf-8
+"I don't like polyglots js indentation
+let g:polyglot_disabled = ['javascript']
 
-" allow backspacing over everything in insert mode
+"----------Plugins-------------
+call plug#begin()
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vividchalk'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rails'
+
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'mattn/emmet-vim'
+Plug 'preservim/nerdtree'
+Plug 'mileszs/ack.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-scripts/camelcasemotion'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-signify'
+Plug 'sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rust-lang/rust.vim'
+
+Plug 'iammer/spin.vim'
+Plug 'iammer/ReplaceWithRegister'
+
+call plug#end()
+
+""for airline
+"set laststatus=2
+"set encoding=utf-8
+"
+"" allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
 set nobackup		" do not keep a backup file, use versions instead
 set backupskip=/tmp/*,/private/tmp/* " fix issue with crontab (See :h crontab)
 set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
+"set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
@@ -62,17 +94,13 @@ if v:version > 702 && !has("nvim")
 	set cryptmethod=blowfish
 endif
 
-"---------Plugin Config----------
+""---------Plugin Config----------
 "for easymotions
 let g:EasyMotion_mapping_f = '<leader>f'
 let g:EasyMotion_mapping_F = '<leader>F'
 let g:EasyMotion_mapping_w = '<leader>]'
 let g:EasyMotion_mapping_b = '<leader>['
-"
-""Load pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+
 "
 "Replace with register config
 nmap S <Plug>ReplaceWithRegisterOperator
@@ -96,33 +124,57 @@ let g:ctrlp_open_multiple_files = '1hjr'
 nmap <C-W>f <C-P><C-\>w
 
 set bg=dark
-"Colorschemes are in a plugin so must be loaded after pathogen
+"Colorschemes are in a plugin so must be loaded late
 colorscheme iammer
-
-"Airline config
-let g:airline_left_sep="▶"
-let g:airline_right_sep="◀"
-let g:airline_inactive_collapse = 0
-
-let g:airline_section_b="%<%f%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
-let g:airline_section_c="%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}%{airline#util#wrap(airline#extensions#branch#get_head(),0)}"
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tagbar#enabled = 0
 "
+""Airline config
+if !exists ("g:airline_symbols")
+	let g:airline_symbols={}
+endif
+let g:airline_symbols.linenr='L'
+"let g:airline_left_sep="▶"
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_mode_map = {
+	\ '__'     : '-',
+	\ 'c'      : 'C',
+	\ 'i'      : 'I',
+	\ 'ic'     : 'I',
+	\ 'ix'     : 'I',
+	\ 'n'      : 'N',
+	\ 'multi'  : 'M',
+	\ 'ni'     : 'N',
+	\ 'no'     : 'N',
+	\ 'R'      : 'R',
+	\ 'Rv'     : 'R',
+	\ 's'      : 'S',
+	\ 'S'      : 'S',
+	\ ''     : 'S',
+	\ 't'      : 'T',
+	\ 'v'      : 'V',
+	\ 'V'      : 'V',
+	\ ''     : 'V',
+	\ }
+"let g:airline_right_sep="◀"
+"let g:airline_inactive_collapse = 0
+"
+"let g:airline_section_b="%<%f%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
+"let g:airline_section_c="%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}%{airline#util#wrap(airline#extensions#branch#get_head(),0)}"
+let g:airline#extensions#whitespace#enabled = 0
+"let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+"let g:airline#extensions#tagbar#enabled = 0
+""
 "signify config
 let g:signify_vcs_list=['git','svn']
 let g:signify_disable_by_default=1
 let g:signify_sign_change='~'
-
+"
 "Use ag if available
 if executable('ag')
 	let g:ackprg = 'ag --vimgrep --smart-case --ignore=*.log'
 endif
-"let g:ack_use_dispatch = 1
-
-"I don't like polyglots js indentation
-let g:polyglot_disabled = ['javascript']
+""let g:ack_use_dispatch = 1
+"
 
 let g:javascript_conceal            = 1
 let g:javascript_conceal_function   = "ƒ"
@@ -164,38 +216,40 @@ map Q gq
 vnoremap , <gv
 vnoremap . >gv
 
-"-----Leader Remaps-----
-nnoremap <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
+""-----Leader Remaps-----
+"nnoremap <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+"nnoremap <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
+"nnoremap <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
+"nnoremap <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 nnoremap <leader>em :vsp $MYVIMRC<CR>
 nnoremap <leader>sm :so $MYVIMRC<CR>
 
 nnoremap <leader>h :noh<CR>
-
+"
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
-
+"
 "Leader toggles
 nnoremap <leader>w :set wrap!<CR>
 nnoremap <leader>p :set paste!<CR>
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>m :call g:ToggleNumberMode()<CR>
-
+"
 "create lines above and below without insert mode
 nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
-
-nnoremap <leader>. :CtrlPTag<CR>
-nnoremap <leader>it :Start! ctags -R<CR>
-
+"
+"nnoremap <leader>. :CtrlPTag<CR>
+"nnoremap <leader>it :Start! ctags -R<CR>
+"
 nnoremap <leader>c :call g:ToggleConceal()<CR>
-
+"
 "sort block with gs
 nnoremap gS gs
 nnoremap gs Vip:sort u<CR>
+
+nnoremap <leader>s :SignifyToggle<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -236,7 +290,6 @@ augroup vimrcEx
 	autocmd FileType haskell setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 	autocmd FileType typescript setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 	autocmd FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
-	autocmd FileType javascript ia f() function() {
 	autocmd FileType handlebars setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType handlebars.ember setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
 	autocmd FileType hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab shiftround
@@ -246,7 +299,7 @@ augroup vimrcEx
 
 	autocmd FileType nim setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 
-	autocmd FileType groovy let @w = "^yiWIprintln \"\": ${A}\"j^"
+	autocmd FileType ruby let @w = "^yiWIputs \"\": #{A}\"j^"
 	autocmd FileType javascript let @w = "^y$iconsole.log(`A: ${pA}`);j^"
 
 	" When editing a file, always jump to the last known cursor position.
@@ -261,13 +314,7 @@ augroup vimrcEx
 	\ endif
 
 augroup END
-"----------NVIM specific---------
-if has("nvim")
-	" Matchit seems to be broken
-	let loaded_matchit = 1
-endif
 
-"----------Functions-------------
 function! g:ToggleNumberMode()
 	if (&rnu==1)
 		set nornu

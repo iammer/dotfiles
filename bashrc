@@ -2,6 +2,23 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+function add_to_path {
+	if [[ -d "$1" && "$PATH" != "*$1*" ]]; then
+		if [[ "$2" == "start" ]]; then
+			PATH="$1:$PATH"
+		else
+			PATH="$PATH:$1"
+		fi
+	fi
+}
+
+function load {
+	if [[ -s "$1" ]]; then
+		source "$1"
+	fi
+}
+
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -95,24 +112,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-#Add /usr/local/bin to PATH
-[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:$PATH"
-
-#Add snap path to PATH
-[[ -d /snap/bin ]] && PATH="/snap/bin:$PATH"
-
-#Add ~/bin, .local/bin, and ~/bin_local to PATH
-for path in bin bin_local .local/bin; do
-	if [[ -d "$HOME/$path" ]] && [[ "$PATH" != *$HOME/$path* ]]; then
-		PATH="$PATH:$HOME/$path"
-	fi
-done
-
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -128,14 +127,10 @@ if [ -n "$TMUX" ]; then
 	export TERM='screen-256color'
 fi
 
-#Add Git completion to bash
-[[ -s $HOME/bin/git-completion.bash ]] && source $HOME/bin/git-completion.bash
-
-#phantonjs bin path
-[[ -d /opt/phantomjs/bin ]] && PATH="$PATH:/opt/phantomjs/bin"
+load $HOME/bin/git-completion.bash
 
 #Sensible bash
-[[ -f $DOTFILES/external/bash-sensible/sensible.bash ]] && source $DOTFILES/external/bash-sensible/sensible.bash
+load $DOTFILES/external/bash-sensible/sensible.bash
 
 ### Undo sensible things I don't like
 #Re-enable > clobber
@@ -144,13 +139,12 @@ set +o noclobber
 #Case-sensitive glob and append cd automatically
 shopt -u nocaseglob autocd 2> /dev/null
 
-
 #Invoke desk environment
-[[ ! -z "$DESK_ENV" ]] && source "$DESK_ENV"
-[[ -f $DOTFILES/external/desk/shell_plugins/bash/desk ]] && source $DOTFILES/external/desk/shell_plugins/bash/desk
+load "$DESK_ENV"
+load $DOTFILES/external/desk/shell_plugins/bash/desk
 
 #Init Z
-[[ -f $DOTFILES/external/z/z.sh ]] && source $DOTFILES/external/z/z.sh
+load $DOTFILES/external/z/z.sh
 
 #nice less options
 export PAGER=less
@@ -170,39 +164,22 @@ export EDITOR=$(which nvim 2>/dev/null || which vim 2> /dev/null || which vi)
 # ~/dotfiles/bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f $DOTFILES/bash_aliases ]; then
-    source $DOTFILES/bash_aliases
-fi
-
-#include bash_functions if it exists
-if [ -f $DOTFILES/bash_functions ]; then
-	source $DOTFILES/bash_functions
-fi
-
-#invoke bash_local if it exists
-if [ -f $HOME/.bash_local ]; then
-	source $HOME/.bash_local
-fi
-
-#invoke .local/bashrc if it exists
-if [ -f $HOME/.local/bashrc ]; then
-	source $HOME/.local/bashrc
-fi
+load $DOTFILES/bash_aliases
+load $DOTFILES/bash_functions
+load $HOME/.bash_local
+load $HOME/.local/bashrc
 
 if [[ "$MANPATH" != *$HOME/man_local* ]]; then
 	[[ -d $HOME/man_local ]] && MANPATH="$MANPATH:$HOME/man_local"
 fi
 
 #invoke platform specific files if they exist
-PLATFORM=$(uname | tr '[:upper:]' '[:lower:]')
-if [ -f $DOTFILES/bash_$PLATFORM ]; then
-	source $DOTFILES/bash_$PLATFORM
-fi
+load $DOTFILES/bash_$(uname | tr '[:upper:]' '[:lower:]')
 
 #Setup deno if installed
 if [[ -d $HOME/.deno ]]; then
 	export DENO_INSTALL="$HOME/.deno"
-	export PATH="$DENO_INSTALL/bin:$PATH"
+	add_to_path "$DENO_INSTALL/bin"
 fi
 
 #Setup nvm if installed, lazy-load if IS_SLOW_DISK (set in .bash_local)
@@ -220,18 +197,15 @@ if [[ -s $HOME/.nvm/nvm.sh ]]; then
 	fi
 else #Use node installed in /opt/node if exists
 	if [[ -d /opt/node/bin ]]; then
-		PATH="$PATH:/opt/node/bin"
+		add_to_path /opt/node/bin
 	fi
 fi
 
 #Setup Go if installed
-for path in /usr/local/go/bin /opt/go/bin $HOME/code/go/bin; do
-	[[ -d $path ]] && PATH="$PATH:$path"
-done
 if [[ -d $HOME/code/go ]]; then
 	#Add local go path if not there already and handle empty GOPATH if needed
 	[[ $GOPATH == *"$HOME/code/go"* ]] || export GOPATH="${GOPATH+$GOPATH:}$HOME/code/go"
-	PATH="$PATH:$GOPATH/bin"
+	add_to_path "$GOPATH/bin"
 fi
 
 #Rustup
@@ -242,12 +216,10 @@ fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+load "$HOME/.sdkman/bin/sdkmain-init.sh"
 
 #Cabal (ghc package manager)
-if [[ -d $HOME/.cabal/bin ]]; then
-	PATH="$PATH:$HOME/.cabal/bin"
-fi
+load $HOME/.cabal/bin
 
 #Setup gcloud
 GCLOUD_PATH=''
@@ -264,14 +236,7 @@ done
 #Remove parallel nag
 [[ -f "$HOME/.parallel/will-cite" ]] || (mkdir $HOME/.parallel 2> /dev/null ; touch $HOME/.parallel/will-cite)
 
-#Nim
-[[ -d "/opt/nim/bin" ]] && PATH="$PATH:/opt/nim/bin"
-[[ -d "$HOME/.nimble/bin" ]] && PATH="$PATH:$HOME/.nimble/bin"
-
-#Julia
-[[ -d "/opt/julia/bin" ]] && PATH="$PATH:/opt/julia/bin"
-
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+load "$NVM_DIR/bash_completion"
 
 #R
 if which R > /dev/null; then
@@ -284,17 +249,9 @@ if [[ -d $HOME/code/pico/pico-sdk ]]; then
 	export PICO_SDK_PATH=$HOME/code/pico/pico-sdk
 fi
 
-#rbenv
-if [[ -d $HOME/.rbenv/bin ]]; then
-	PATH="$HOME/.rbenv/bin:$PATH"
-	if which rbenv > /dev/null; then
-		eval "$(rbenv init -)"
-	fi
-fi
-
 #pyenv
 if [[ -d $HOME/.pyenv/bin ]]; then
-	PATH="$HOME/.pyenv/bin:$PATH"
+	add_to_path "$HOME/.pyenv/bin"
 	export PYENV_ROOT="$HOME/.pyenv"
 	if which pyenv > /dev/null; then
 		eval "$(pyenv init --path)"
@@ -302,18 +259,35 @@ if [[ -d $HOME/.pyenv/bin ]]; then
 fi
 
 #Poetry
-if [[ -f $HOME/.poetry/env ]]; then
-	source $HOME/.poetry/env
-fi
+load $HOME/.poetry/env
 
-#tfenv
-if [[ -d $HOME/.local/tfenv/bin ]]; then
-	PATH="$HOME/.local/tfenv/bin:$PATH"
-fi
+while read path_dir; do
+	add_to_path $path_dir
+done <<-END_PATHS
+	/usr/local/bin start
+	/snap/bin start
+	$HOME/bin start
+	$HOME/bin_local start
+	$HOME/.local/bin start
+	/opt/phantomjs/bin
+	/opt/nim/bin
+	$HOME/.nimble/bin
+	/opt/julia/bin
+	$HOME/.local/tfenv/bin
+	$HOME/.local/tgenv/bin
+	/opt/heroku/bin
+	/usr/local/go/bin
+	/opt/go/bin
+	$HOME/code/go/bin
+	$HOME/.yarn/bin
+END_PATHS
 
-#tfenv
-if [[ -d $HOME/.local/tgenv/bin ]]; then
-	PATH="$HOME/.local/tgenv/bin:$PATH"
+#rbenv
+if [[ -d $HOME/.rbenv/bin ]]; then
+	add_to_path "$HOME/.rbenv/bin" start
+	if which rbenv > /dev/null; then
+		eval "$(rbenv init -)"
+	fi
 fi
 
 #Remove any duplicate entries from PATH
@@ -331,3 +305,5 @@ if [ -n "$PATH" ]; then
 	unset old_PATH x
 fi
 
+unset -f add_to_path
+unset -f load
