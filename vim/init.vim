@@ -117,7 +117,7 @@ let g:signify_sign_change='~'
 
 "Use ag if available
 if executable('ag')
-	let g:ackprg = 'ag --vimgrep --smart-case'
+	let g:ackprg = 'ag --vimgrep --smart-case --ignore=*.log'
 endif
 "let g:ack_use_dispatch = 1
 
@@ -284,6 +284,10 @@ function! g:ToggleConceal()
 	endif
 endfunction
 
+function! s:env(var) abort
+  return exists('*DotenvGet') ? DotenvGet(a:var) : eval('$'.a:var)
+endfunction
+
 "----------Commands-------------
 
 " Convenient command to see the difference between the current buffer and the
@@ -293,12 +297,3 @@ if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		\ | wincmd p | diffthis
 endif
-
-"Some useful portkey commands
-command! VR belowright vsplit +R
-command! SR belowright split +R
-command! VA belowright vsplit +A
-command! SA belowright split +A
-command! T Etest
-command! VT belowright vsplit +T
-command! ST belowright split +T
