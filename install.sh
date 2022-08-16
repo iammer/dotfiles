@@ -85,6 +85,9 @@ else
 	ln -s $dir/gitconfig18 ~/.gitconfig
 fi
 
+mkdir -p ~/.local/completion > /dev/null
+wget https://github.com/git/git/raw/master/contrib/completion/git-completion.bash -O ~/.local/completion/git-completion.bash
+
 [[ -d ~/bin ]] && mv ~/bin $olddir
 [[ -d $dir/bin ]] && ln -s $dir/bin ~/bin
 

@@ -127,8 +127,6 @@ if [ -n "$TMUX" ]; then
 	export TERM='screen-256color'
 fi
 
-load $HOME/bin/git-completion.bash
-
 #Sensible bash
 load $DOTFILES/external/bash-sensible/sensible.bash
 
@@ -138,6 +136,10 @@ set +o noclobber
 
 #Case-sensitive glob and append cd automatically
 shopt -u nocaseglob autocd 2> /dev/null
+
+for file in "$HOME/.local/completion/*"; do
+	load "$file"
+done
 
 #Invoke desk environment
 load "$DESK_ENV"

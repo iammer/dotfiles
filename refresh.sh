@@ -57,6 +57,7 @@ for file in $w3m_files; do
 	fi
 done
 
-[[ -e ~/dotfiles/bin/git-completion.bash ]] || wget https://github.com/git/git/raw/master/contrib/completion/git-completion.bash -O ~/dotfiles/bin/git-completion.bash
+mkdir -p ~/.local/completion > /dev/null
+wget https://github.com/git/git/raw/master/contrib/completion/git-completion.bash -O ~/.local/completion/git-completion.bash
 
 [[ -d ~/.local/share/nvim/undo ]] || mkdir -p ~/.local/share/nvim/undo
