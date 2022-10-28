@@ -15,9 +15,9 @@ if exists(":CocInstall")
 
 	" Use <c-space> to trigger completion.
 	if has('nvim')
-	inoremap <silent><expr> <c-space> coc#refresh()
+		inoremap <silent><expr> <c-space> coc#refresh()
 	else
-	inoremap <silent><expr> <c-@> coc#refresh()
+		inoremap <silent><expr> <c-@> coc#refresh()
 	endif
 
 	" Make <CR> auto-select the first completion item and notify coc.nvim to
@@ -54,8 +54,8 @@ if exists(":CocInstall")
 	nmap <leader>rn <Plug>(coc-rename)
 
 	" Formatting selected code.
-	xmap <leader>f  <Plug>(coc-format-selected)
-	nmap <leader>f  <Plug>(coc-format-selected)
+	xmap <leader>r  <Plug>(coc-format-selected)
+	nmap <leader>r  <Plug>(coc-format-selected)
 
 	augroup mygroup
 	autocmd!
