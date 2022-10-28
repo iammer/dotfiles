@@ -3,5 +3,8 @@
 		"preferences": {
 			"formatOnSaveFileTypes": ["rust"]
 		}
+	},
+	"solargraph": {
+		"commandPath": "/home/michael/.rbenv/shims/solargraph"
 	}
 }
