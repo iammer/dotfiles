@@ -30,6 +30,7 @@ Plug 'tpope/vim-vividchalk'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-dotenv'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jlanzarotta/bufexplorer'
@@ -159,7 +160,8 @@ let g:airline_mode_map = {
 "let g:airline_inactive_collapse = 0
 "
 "let g:airline_section_b="%<%f%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#"
-"let g:airline_section_c="%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}%{airline#util#wrap(airline#extensions#branch#get_head(),0)}"
+"let g:airline_section_b="%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}%{airline#util#wrap(airline#extensions#branch#get_head(),0)}"
+let g:airline_section_b=""
 let g:airline#extensions#whitespace#enabled = 0
 "let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 "let g:airline#extensions#tagbar#enabled = 0
