@@ -74,7 +74,7 @@ set number
 set hidden
 set autoindent		" always set autoindenting on
 
-set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab shiftround
+set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab shiftround
 set noequalalways
 set splitright
 
@@ -177,18 +177,6 @@ if executable('ag')
 endif
 ""let g:ack_use_dispatch = 1
 "
-
-let g:javascript_conceal            = 1
-let g:javascript_conceal_function   = "ƒ"
-let g:javascript_conceal_null       = "ø"
-let g:javascript_conceal_this       = "@"
-let g:javascript_conceal_return     = "⇚"
-let g:javascript_conceal_undefined  = "¿"
-let g:javascript_conceal_NaN        = "ℕ"
-let g:javascript_conceal_prototype  = "¶"
-let g:javascript_conceal_static     = "•"
-let g:javascript_conceal_super      = "Ω"
-highlight Conceal ctermbg=233
 
 "Fix html indentation
 let g:html_indent_inctags = "html,body,head,tbody"

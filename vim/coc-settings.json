@@ -1,10 +1,14 @@
 {
 	"coc": {
 		"preferences": {
-			"formatOnSaveFileTypes": ["rust"]
+			"formatOnSaveFileTypes": ["rust"],
 		}
 	},
 	"solargraph": {
 		"commandPath": "/home/michael/.rbenv/shims/solargraph"
+	},
+	"suggest": {
+		"noselect": true,
+		"selection": "first"
 	}
 }
