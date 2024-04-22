@@ -161,16 +161,6 @@ export LESS="-iRMSx4 -FX"
 #vim may be different places on different machines (use nvim if available)
 export EDITOR=$(which nvim 2>/dev/null || which vim 2> /dev/null || which vi)
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/dotfiles/bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-load $DOTFILES/bash_aliases
-load $DOTFILES/bash_functions
-load $HOME/.bash_local
-load $HOME/.local/bashrc
-
 if [[ "$MANPATH" != *$HOME/man_local* ]]; then
 	[[ -d $HOME/man_local ]] && MANPATH="$MANPATH:$HOME/man_local"
 fi
@@ -268,6 +258,7 @@ while read path_dir; do
 done <<-END_PATHS
 	/usr/local/bin start
 	/snap/bin start
+	/opt/nvim/bin start
 	$HOME/bin start
 	$HOME/bin_local start
 	$HOME/.local/bin start
@@ -307,6 +298,16 @@ if [ -n "$PATH" ]; then
 	PATH=${PATH#:}
 	unset old_PATH x
 fi
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/dotfiles/bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+load $DOTFILES/bash_aliases
+load $DOTFILES/bash_functions
+load $HOME/.bash_local
+load $HOME/.local/bashrc
 
 unset -f add_to_path
 unset -f load
