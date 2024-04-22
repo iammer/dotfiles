@@ -50,10 +50,20 @@ Plug 'pangloss/vim-javascript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rust-lang/rust.vim'
 
+Plug 'https://github.com/github/copilot.vim.git'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
+
 Plug 'iammer/spin.vim'
 Plug 'iammer/ReplaceWithRegister'
 
 call plug#end()
+
+lua << EOF
+require("CopilotChat").setup {
+  debug = true, -- Enable debugging
+}
+EOF
 
 ""for airline
 "set laststatus=2
