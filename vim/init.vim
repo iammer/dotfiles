@@ -20,7 +20,10 @@ endif
 set nocompatible
 
 "I don't like polyglots js indentation
-let g:polyglot_disabled = ['javascript']
+"let g:polyglot_disabled = ['indent']
+
+let g:copilot_node_command = "/opt/node20/bin/node"
+let g:coc_node_path = "/opt/node20/bin/node"
 
 "----------Plugins-------------
 call plug#begin()
