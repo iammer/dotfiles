@@ -60,9 +60,10 @@ Plug 'iammer/ReplaceWithRegister'
 call plug#end()
 
 lua << EOF
-require("CopilotChat").setup {
-  debug = true, -- Enable debugging
-}
+if vim.fn.has('nvim-0.9.5') == 1 then
+  require("CopilotChat").setup {
+  }
+end
 EOF
 
 ""for airline
