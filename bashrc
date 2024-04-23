@@ -158,15 +158,34 @@ export PAGER=less
 # -X don't init term at begin and exit
 export LESS="-iRMSx4 -FX"
 
-#vim may be different places on different machines (use nvim if available)
-export EDITOR=$(which nvim 2>/dev/null || which vim 2> /dev/null || which vi)
-
 if [[ "$MANPATH" != *$HOME/man_local* ]]; then
 	[[ -d $HOME/man_local ]] && MANPATH="$MANPATH:$HOME/man_local"
 fi
 
 #invoke platform specific files if they exist
 load $DOTFILES/bash_$(uname | tr '[:upper:]' '[:lower:]')
+
+while read path_dir; do
+	add_to_path $path_dir
+done <<-END_PATHS
+	/usr/local/bin start
+	/snap/bin start
+	/opt/nvim/bin start
+	$HOME/bin start
+	$HOME/bin_local start
+	$HOME/.local/bin start
+	/opt/phantomjs/bin
+	/opt/nim/bin
+	$HOME/.nimble/bin
+	/opt/julia/bin
+	$HOME/.local/tfenv/bin
+	$HOME/.local/tgenv/bin
+	/opt/heroku/bin
+	/usr/local/go/bin
+	/opt/go/bin
+	$HOME/code/go/bin
+	$HOME/.yarn/bin
+END_PATHS
 
 #Setup deno if installed
 if [[ -d $HOME/.deno ]]; then
@@ -230,12 +249,6 @@ done
 
 load "$NVM_DIR/bash_completion"
 
-#R
-if which R > /dev/null; then
-	[[ -d $HOME/.local/lib/R ]] || mkdir -p $HOME/.local/lib/R
-	export R_LIBS_USER=$HOME/.local/lib/R
-fi
-
 #Pico
 if [[ -d $HOME/code/pico/pico-sdk ]]; then
 	export PICO_SDK_PATH=$HOME/code/pico/pico-sdk
@@ -252,29 +265,6 @@ fi
 
 #Poetry
 load $HOME/.poetry/env
-
-while read path_dir; do
-	add_to_path $path_dir
-done <<-END_PATHS
-	/usr/local/bin start
-	/snap/bin start
-	/opt/nvim/bin start
-	$HOME/bin start
-	$HOME/bin_local start
-	$HOME/.local/bin start
-	/opt/phantomjs/bin
-	/opt/nim/bin
-	$HOME/.nimble/bin
-	/opt/julia/bin
-	$HOME/.local/tfenv/bin
-	$HOME/.local/tgenv/bin
-	/opt/heroku/bin
-	/usr/local/go/bin
-	/opt/go/bin
-	/opt/crystal/bin
-	$HOME/code/go/bin
-	$HOME/.yarn/bin
-END_PATHS
 
 #rbenv
 if [[ -d $HOME/.rbenv/bin ]]; then
@@ -298,6 +288,15 @@ if [ -n "$PATH" ]; then
 	PATH=${PATH#:}
 	unset old_PATH x
 fi
+
+#R
+if which R > /dev/null; then
+	[[ -d $HOME/.local/lib/R ]] || mkdir -p $HOME/.local/lib/R
+	export R_LIBS_USER=$HOME/.local/lib/R
+fi
+
+#vim may be different places on different machines (use nvim if available)
+export EDITOR=$(which nvim 2>/dev/null || which vim 2> /dev/null || which vi)
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
