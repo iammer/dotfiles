@@ -280,6 +280,7 @@ done <<-END_PATHS
 	/opt/heroku/bin
 	/usr/local/go/bin
 	/opt/go/bin
+	/opt/crystal/bin
 	$HOME/code/go/bin
 	$HOME/.yarn/bin
 END_PATHS
